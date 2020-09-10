@@ -1,0 +1,44 @@
+.menu-enter-active {
+  transition: all 0.5s ease-in-out;
+}
+
+// .menu-leave-active {
+
+// }
+.menu-enter {
+  transform: translateX(1000px);
+  opacity: 0;
+}
+
+.menupng0 {
+  // width: 100%;
+  height: 250px;
+  background: url("../../img/vagetable.jpg") center (center / cover) no-repeat;
+}
+
+.menupng1 {
+  height: 250px;
+  background: url("../../img/egg.jpg") center (center / cover) no-repeat;
+}
+
+.menupng2 {
+  height: 250px;
+  background: url("../../img/drink.jpg") center (center / cover) no-repeat;
+}
+
+.menupng3 {
+  height: 250px;
+  background: url("../../img/checkenchest.jpg") center (center / cover) no-repeat;
+}
+
+.menutitle {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 5px;
+  >div{
+    font-weight: 700;
+  }
+}

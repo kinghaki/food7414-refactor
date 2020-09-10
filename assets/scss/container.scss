@@ -1,0 +1,9 @@
+@import './common/rwd';
+
+.container{
+    padding: 0 5%;
+    // background-color: yellow;
+    @include rwd(pad) {
+        padding: 0 2.5%;
+    }
+}

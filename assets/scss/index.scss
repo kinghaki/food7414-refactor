@@ -1,0 +1,118 @@
+@import "./common/rwd";
+
+#index {
+  padding: 20px 0 0px;
+//  所有產品介紹        //
+  
+// 主餐介紹 //
+  > .productintro {
+    text-align: center;
+
+    // display:flex ;
+    // align-items: center;
+    // justify-content: center;
+    > .productmain {
+      padding: 0 10%;
+
+      @include rwd(mobile) {
+        padding: 0%;
+        
+      }
+
+
+      li {
+        display: flex;
+        align-items: center;
+        margin-top: 70px;
+
+        > [class^=productimgback] {
+          position: relative;
+
+          > img {
+            @include rwd(phone) {
+              width: 150px;
+              height: 150px;
+              // height: 335px;
+            }
+          }
+
+          > div {
+            display: none;
+            position: absolute;
+            top: 0;
+
+            // line-height: 250px;
+            background-color: #A7a7a7;
+            width: 100%;
+            height: 100%;
+
+            // opacity: 0;
+         
+          }
+
+          > p {
+            display: none;
+            position: absolute;
+            line-height: 335px;
+
+            // background-color: darkcyan;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-size: 25px;
+            color: white;
+            @include rwd(phone){
+              line-height: 150px;
+              // font-size: 19px;
+            }
+            // opacity: 0;
+         
+          }
+        }
+
+        > div:hover {
+          > div {
+            display: block;
+            opacity: 0.5;
+
+            // transition: all 5s ease-in;
+         
+          }
+
+          > p {
+            display: block;
+          }
+        }
+
+        > p {
+          width: 500px;
+          padding: 0 20px;
+          letter-spacing: 2px;
+          line-height: 1.8;
+
+          @include rwd(pad) {
+            width: 300px;
+            padding: 0 10px;
+            // font-size: 14px;
+          }
+          @include rwd(phone){
+            width: 170px;
+            padding: 0 10px;
+            font-size: 14px;
+          }
+
+
+          // line-height: 30px;
+       
+        }
+      }
+
+      li:nth-child(2n) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}

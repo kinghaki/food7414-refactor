@@ -1,0 +1,198 @@
+@import "./common/rwd";
+@import "./common/font";
+
+.header {
+  // background-color: olivedrab;
+  // border-bottom: 1px solid black;
+  font-family: 'Acme', 'Nunito', sans-serif;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+
+  &.headerfixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    // 如果不希望文字也被透明化就用rgba
+    // 希望文字被透明就用opacity屬姓
+
+
+
+    background-color: rgba($color: white, $alpha: 0.8);
+
+    // opacity: 0.6;
+    // width: 95%;
+    padding: 0 2.5%;
+    margin: 0 auto;
+    height: 0px;
+  }
+
+  &.headerfixed2 {
+    height: 150px;
+    transition: height 0.3s ease-in-out;
+  }
+
+  > .imgblock {
+    display: flex;
+
+    // background-color: darkblue;
+    align-items: center;
+
+    > .img {
+      cursor: pointer;
+      width: 150px;
+      height: 150px;
+      background: url("../../img/logo.png") center (center / cover) no-repeat;
+    }
+
+    > .menulist {
+      height: 30px;
+      display: flex;
+      margin-left: 20px;
+
+      > li {
+        line-height: 30px;
+        // background-color: darkcyan;
+      }
+
+      > li:hover {
+        border-bottom: 2px solid red;
+
+        // background-color: darkcyan;
+        line-height: 25px;
+        transition: all 0.2s ease-in;
+      }
+
+      > li:nth-child(-n+2) {
+        // margin-right: 45px;
+        @include rwd(pc) {
+          margin-right: (100vw / 20);
+        }
+
+
+        @include rwd(pad) {
+          // margin-right: 45px;
+          margin-right: (100vw / 40);
+        }
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .menulist {
+        display: none;
+      }
+    }
+  }
+
+  > .userwhole {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    > input {
+      // width: 300px;
+      height: 40px;
+      text-indent: 5px;
+      border-radius: 10px;
+      border: 1px solid #ced4da;
+
+      &:focus {
+        border: 2px solid pink;
+        box-shadow: 0px 0px 5px gray;
+        transition: border 0.2s ease-in-out;
+      }
+    }
+
+    > img {
+      cursor: pointer;
+    }
+
+    > .userinfo {
+      margin-left: 20px;
+
+      .user {
+        font-size: 25px;
+        color: darkcyan;
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: burlywood;
+        }
+      }
+
+      .cart {
+        font-size: 25px;
+        color: black;
+
+        // background-color: #00c300;
+        border-radius: 15px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+
+        &:hover {
+          color: #808095;
+        }
+      }
+    }
+
+    > .menulistbtn {
+      display: none;
+
+      @media screen and (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 60px;
+        height: 50px;
+        margin: 0 20px;
+        padding: 0 10px;
+        border: 2px solid #e2e3e4;
+        cursor: pointer;
+
+        // background-color:white ;
+        > [class^="btnline"] {
+          text-align: center;
+          border-top: 6px solid gray;
+
+          // margin-top: 6px;
+       
+        }
+      }
+    }
+
+    @include rwd(phone) {
+      flex-wrap: wrap;
+      height: 200px;
+      align-content: center;
+
+      > input {
+        order: 1;
+        width: 200px;
+        margin-top: 20px;
+
+        @media screen and (max-width: 470px) {
+          width: 125px;
+        }
+      }
+
+      > img {
+        order: 2;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+// 這裡是用來區分main跟header的分割線
+.headerborder {
+  border-bottom: 3px ridge gray;
+  box-shadow: 0 5px 10px grey;
+
+  // margin-top: 2px;
+}

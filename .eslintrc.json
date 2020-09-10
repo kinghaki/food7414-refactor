@@ -1,0 +1,53 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "@nuxtjs",
+        "plugin:nuxt/recommended",
+        "plugin:vue/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        // "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue",
+        "nuxt"
+    ],
+    "rules": {
+        "vue/script-indent": [
+            "error",
+            // 子元素空兩個
+            2,
+            {
+                // 根標籤空0個
+                "baseIndent": 0
+            }
+        ],
+        "vue/html-indent": [
+            "error",
+            2,
+            {
+                "attribute": 1,
+                "baseIndent": 1,
+                "closeBracket": 0,
+                "alignAttributesVertically": true,
+                "ignores": []
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.vue"
+            ],
+            "rules": {
+                "indent": "off"
+            }
+        }
+    ]
+}

@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css?family=Acme|Nunito&display=swap");
+.header {
+  font-family: 'Acme', 'Nunito', sans-serif;
+  font-size: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 200px;
+}
+
+.header.headerfixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 2.5%;
+  margin: 0 auto;
+  height: 0px;
+}
+
+.header.headerfixed2 {
+  height: 150px;
+  -webkit-transition: height 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
+}
+
+.header > .imgblock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header > .imgblock > .img {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background: url("../../img/logo.png") center center/cover no-repeat;
+}
+
+.header > .imgblock > .menulist {
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+
+.header > .imgblock > .menulist > li {
+  line-height: 30px;
+}
+
+.header > .imgblock > .menulist > li:hover {
+  border-bottom: 2px solid red;
+  line-height: 25px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+@media screen and (min-width: 980px) {
+  .header > .imgblock > .menulist > li:nth-child(-n+2) {
+    margin-right: 5vw;
+  }
+}
+
+@media screen and (min-width: 650px) and (max-width: 979px) {
+  .header > .imgblock > .menulist > li:nth-child(-n+2) {
+    margin-right: 2.5vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header > .imgblock .menulist {
+    display: none;
+  }
+}
+
+.header > .userwhole {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header > .userwhole > input {
+  height: 40px;
+  text-indent: 5px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+
+.header > .userwhole > input:focus {
+  border: 2px solid pink;
+  -webkit-box-shadow: 0px 0px 5px gray;
+          box-shadow: 0px 0px 5px gray;
+  -webkit-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
+}
+
+.header > .userwhole > img {
+  cursor: pointer;
+}
+
+.header > .userwhole > .userinfo {
+  margin-left: 20px;
+}
+
+.header > .userwhole > .userinfo .user {
+  font-size: 25px;
+  color: darkcyan;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.header > .userwhole > .userinfo .user:hover {
+  color: burlywood;
+}
+
+.header > .userwhole > .userinfo .cart {
+  font-size: 25px;
+  color: black;
+  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.header > .userwhole > .userinfo .cart:hover {
+  color: #808095;
+}
+
+.header > .userwhole > .menulistbtn {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .header > .userwhole > .menulistbtn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 60px;
+    height: 50px;
+    margin: 0 20px;
+    padding: 0 10px;
+    border: 2px solid #e2e3e4;
+    cursor: pointer;
+  }
+  .header > .userwhole > .menulistbtn > [class^="btnline"] {
+    text-align: center;
+    border-top: 6px solid gray;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .header > .userwhole {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: 200px;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .header > .userwhole > input {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 200px;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 649px) and (max-width: 470px) {
+  .header > .userwhole > input {
+    width: 125px;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .header > .userwhole > img {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-top: 20px;
+  }
+}
+
+.headerborder {
+  border-bottom: 3px ridge gray;
+  -webkit-box-shadow: 0 5px 10px grey;
+          box-shadow: 0 5px 10px grey;
+}
+/*# sourceMappingURL=header.css.map */

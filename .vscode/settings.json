@@ -1,0 +1,47 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": [
+        "javascript",
+        "vue",
+        // "scss"
+    ],
+    "vetur.validation.template": false,
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "vue": "html"
+    },
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/assets/css/expand" //此為輸出的路徑，可以自行更改
+        },
+        {
+            "extensionName": ".min.css", //正式版副檔名為min.css
+            "format": "compressed", //壓縮成一行css，正式版本
+            "savePath": "/assets/css/compress"
+        }
+    ],
+    "liveSassCompile.settings.excludeList": [
+        "**/node_modules/**",
+        ".vscode/**"
+    ],
+    //generateMap:SASS跟CSS做對應行數
+    "liveSassCompile.settings.generateMap": true,
+    //autoprefix設定
+    //這項套件會自動幫你加入前綴（Prefix）
+    //例如：-webkit- -moz- ...等
+    "liveSassCompile.settings.autoprefix": [
+        // 瀏覽器市佔率大於1%和最新的兩個版本會加錢墜 符合其中一項就可
+        "> 1%",
+        "last 2 versions"
+    ],
+    "sassFormat.indent": 2,
+    // "[scss]":{
+    //     "editor.formatOnSave": true
+    // }
+    // "editor.formatOnSave": true,
+    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

@@ -1,0 +1,53 @@
+.menu-enter-active {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-enter {
+  -webkit-transform: translateX(1000px);
+          transform: translateX(1000px);
+  opacity: 0;
+}
+
+.menupng0 {
+  height: 250px;
+  background: url("../../img/vagetable.jpg") center center/cover no-repeat;
+}
+
+.menupng1 {
+  height: 250px;
+  background: url("../../img/egg.jpg") center center/cover no-repeat;
+}
+
+.menupng2 {
+  height: 250px;
+  background: url("../../img/drink.jpg") center center/cover no-repeat;
+}
+
+.menupng3 {
+  height: 250px;
+  background: url("../../img/checkenchest.jpg") center center/cover no-repeat;
+}
+
+.menutitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 250px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  letter-spacing: 5px;
+}
+
+.menutitle > div {
+  font-weight: 700;
+}
+/*# sourceMappingURL=headermenu.css.map */
