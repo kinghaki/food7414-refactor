@@ -1,6 +1,7 @@
 <!--  -->
 <template>
-  <div class="frontlayout">
+  <div ref="frontlayout" class="frontlayout">
+    <!-- <div ref="frontfixed" class="frontfixed"> -->
     <transition-group name="menu">
       <div v-for="(item) in headermenu.menu" v-show="headercount == item.id" :key="item.id" :class="item.background">
         <div class="menutitle">
@@ -133,13 +134,16 @@ export default {
       headerfixeds: '',
       headerfixeds2: '',
       fixed: ''
+      // ss: 0
     }
   },
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
+
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
+    // 最頭的照片倫波圖
     this.header = window.setInterval(() => {
       if (this.headercount < 3) {
         this.headercount = this.headercount + 1
@@ -147,7 +151,12 @@ export default {
         this.headercount = 0
       }
     }, 1000000)
+    // headermenu
+    // this.$refs.frontlayout.style.height = this.$refs.frontfixed.style.height
+    // window.addEventListener('resize', this.)
+    window.addEventListener('load', this.doubleheight)
     window.addEventListener('scroll', this.headerfixed)
+    window.addEventListener('scroll', this.bodyheight)
   },
   destroyed () {
     window.clearInterval(this.header)
@@ -161,13 +170,24 @@ export default {
         const that = this
         this.fixed = setTimeout(() => {
           that.headerfixeds2 = 'headerfixed2'
-          console.log(1)
+          // console.log(1)
         }, 100)
       } else {
         this.headerfixeds2 = ''
         this.headerfixeds = ''
         clearTimeout(this.fixed)
       }
+    },
+    bodyheight () {
+      if (window.pageYOffset === document.documentElement.style.height) { document.documentElement.style.height += document.documentElement.clientHeight }
+    },
+    doubleheight () {
+      // console.log(this.ss++)
+
+      // document.body.style.height = window.innerHeight * 1.5 + 'px'
+      // console.log(document.body.style.height)
+      // document.body.style.overflowY = 'hidden'
+      // console.log(document.documentElement.style.height)
     }
   }
 
@@ -180,6 +200,6 @@ export default {
 @import "@/assets/css/compress/container.min.css";
 @import "@/assets/css/compress/header.min.css";
 @import "@/assets/css/compress/headermenu.min.css";
-@import "@/assets/css/compress/footer.min.css"
+@import "@/assets/css/compress/footer.min.css";
 
 </style>

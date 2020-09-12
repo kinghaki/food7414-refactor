@@ -80,9 +80,15 @@ video {
   vertical-align: baseline;
   box-sizing: border-box;
 }
+
 body{
-  overflow-x: hidden;
+  // overflow-x: hidden;
+  // height: 1500px;
+  // overflow-y: hidden;
+  // overflow-y:scroll;
+
 }
+
 *{
   box-sizing: border-box;
 }

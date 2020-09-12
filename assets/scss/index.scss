@@ -2,32 +2,65 @@
 
 #index {
   padding: 20px 0 0px;
-//  所有產品介紹        //
-  
-// 主餐介紹 //
+  //  創店中指      //
+  > .wholeproduct {
+    text-align: center;
+    margin-top: 70px;
+    > h2 {
+      // position: relative;
+      // z-index: 3;
+      background-color: #f0f1e5;
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      // overflow: hidden;
+    }
+    > .producttext {
+      // position: relative;
+      // z-index: 1;
+      border: 3px ridge pink;
+      margin-top: -15px;
+      padding: 40px 0;
+      // background-color: tan;
+      font-weight: 550;
+      color: #3f5d45;
+      font-size: 18px;
+      letter-spacing: 2px;
+      line-height: 50px;
+    }
+  }
+  // 主餐介紹 //
   > .productintro {
     text-align: center;
-
+    margin-top: 100px;
     // display:flex ;
     // align-items: center;
     // justify-content: center;
+
     > .productmain {
       padding: 0 10%;
+      height: 1970px;
 
       @include rwd(mobile) {
         padding: 0%;
-        
+        height: 1970px;
       }
-
+      @include rwd(phone) {
+        padding: 0%;
+        height: 1100px;
+      }
 
       li {
         display: flex;
         align-items: center;
         margin-top: 70px;
 
-        > [class^=productimgback] {
+        > [class^="productimgback"] {
           position: relative;
-
+          // height: 338px;
+          // @include rwd(phone){
+          //   height: 153px;
+          // }
           > img {
             @include rwd(phone) {
               width: 150px;
@@ -42,12 +75,11 @@
             top: 0;
 
             // line-height: 250px;
-            background-color: #A7a7a7;
+            background-color: #a7a7a7;
             width: 100%;
             height: 100%;
 
             // opacity: 0;
-         
           }
 
           > p {
@@ -64,12 +96,11 @@
             margin: auto;
             font-size: 25px;
             color: white;
-            @include rwd(phone){
+            @include rwd(phone) {
               line-height: 150px;
               // font-size: 19px;
             }
             // opacity: 0;
-         
           }
         }
 
@@ -79,7 +110,6 @@
             opacity: 0.5;
 
             // transition: all 5s ease-in;
-         
           }
 
           > p {
@@ -98,15 +128,13 @@
             padding: 0 10px;
             // font-size: 14px;
           }
-          @include rwd(phone){
+          @include rwd(phone) {
             width: 170px;
             padding: 0 10px;
             font-size: 14px;
           }
 
-
           // line-height: 30px;
-       
         }
       }
 

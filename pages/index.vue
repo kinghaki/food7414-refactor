@@ -2,7 +2,14 @@
 <template>
   <div id="index">
     <div class="wholeproduct">
-      <ul class="mainproduct" />
+      <h2>
+        創店宗旨
+      </h2>
+      <div class="producttext">
+        由於現代人工作相當忙碌，進而導致飲食都相當不正常，然而很多人都常常說要減肥，而採用節食法，雖然短期之內會看到效果，但之後容易復胖。
+        然而正確的方法應該是要運動搭配正確飲食，所以大家來吃我們的高蛋白低卡餐就對了，我們每項食物都是經過最嚴格的把關做出來的，歡迎大家來嘗鮮看看唷!
+      </div>
+      <!-- <ul class="mainproduct" /> -->
     </div>
 
     <div class="productintro">
@@ -108,9 +115,8 @@
       src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ8UZ1jEKrQjQRWwqL7cRA9LQ&key=AIzaSyArU1lsjfClxyYbOZ6Y4QSw0i7d7Z9-8EA"
       allowfullscreen
     />
-    <div class="gg">
-      123
-    </div>
+
+    </transition>
   </div>
 </template>
 
@@ -132,6 +138,7 @@ export default {
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
+    // console.log(document.documentElement.clientHeight)
     window.addEventListener('scroll', this.display)
   },
   destroyed () {
@@ -167,7 +174,5 @@ export default {
 <style scoped>
 /* @import 'style.css'; 引入css類 */
 @import '@/assets/css/compress/index.min.css';
-.gg{
-  height: 1000px;
-}
+
 </style>

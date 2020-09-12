@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAE,OAAO;CAC5B",
+    "mappings": "AAAA,AAAA,YAAY,CAAA;EAER,gBAAgB,EAAE,OAAO;CAE5B",
     "sources": [
         "../../scss/front.scss"
     ],
