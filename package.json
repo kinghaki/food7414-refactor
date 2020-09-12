@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nuxt start",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test":"npm install @neneos/nuxt-animate.css @nuxtjs/axios nuxt"
   },
   "dependencies": {
     "@neneos/nuxt-animate.css": "0.0.1",
