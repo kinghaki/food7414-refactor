@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "install" :"npm install @neneos/nuxt-animate.css @nuxtjs/axios nuxt",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "nuxt build"
   },
   "dependencies": {
     "@neneos/nuxt-animate.css": "0.0.1",
