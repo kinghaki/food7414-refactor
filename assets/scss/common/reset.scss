@@ -1,6 +1,7 @@
 html,
 body,
 div,
+input,
 span,
 applet,
 object,
@@ -76,21 +77,24 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
 }
-
+html{
+  scroll-behavior: smooth;
+}
 body{
   // overflow-x: hidden;
   // height: 1500px;
   // overflow-y: hidden;
   // overflow-y:scroll;
+  
 
 }
 
 *{
   box-sizing: border-box;
+  // background-repeat: initial;
 }
 /* HTML5 display-role reset for older browsers */
 article,

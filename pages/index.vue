@@ -17,7 +17,6 @@
       <ul class="productmain">
         <transition
           enter-active-class="animated bounceInLeft"
-          leave-active-class="animated tada"
           name="1"
         >
           <li v-show="productimg1" ref="productimg1">
@@ -117,11 +116,17 @@
     />
 
     </transition>
+    <div class="gotop" @click="scrollby">
+      <div class="svg_box">
+        <div class="tran" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'Index',
   layout: 'front',
   data () {
     return {
@@ -140,12 +145,26 @@ export default {
   mounted () {
     // console.log(document.documentElement.clientHeight)
     window.addEventListener('scroll', this.display)
+    // console.log(document.body.offsetHeight)
+    // console.log(document.documentElement.offsetHeight)
+    // console.log(document.body.clientHeight)
+    // console.log(document.documentElement.clientHeight)
+    // console.log(document.documentElement.scrollHeight)
+    // console.log(document.body.scrollHeight)
+    // console.log(document.body.scrollTop)
+    // console.log(document.documentElement.scrollTop)
+    // this.$nextTick(() => {
+    //   that.$nuxt.$loading.start()
+
+    //   // setTimeout(() => that.$nuxt.$loading.finish(), 2000)
+    // })
   },
   destroyed () {
     window.removeEventListener('scroll', this.display)
   },
   methods: {
     display () {
+      window.removeEventListener('scroll', this.display)
       const refArray = [
         { ref: 'productimg1', show: 'productimg1' },
         { ref: 'productimg2', show: 'productimg2' },
@@ -154,11 +173,16 @@ export default {
         { ref: 'productimg5', show: 'productimg5' }
       ]
       const that = this
+      // console.log(document.documentElement.scrollHeight)
+      // console.log(document.documentElement.scrollTop)
+      // console.log(document.body.scrollHeight)
+      // console.log(document.body.scrollTop)
 
       refArray.forEach((v, i) => {
+        const a = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        const b = document.documentElement.clientHeight || document.body.clientHeight
         if (
-          document.documentElement.clientHeight +
-          document.documentElement.scrollTop >=
+          a + b >=
           that.$refs[v.ref].offsetTop
         ) {
           that[v.show] = true
@@ -166,6 +190,12 @@ export default {
           that[v.show] = false
         }
       })
+      window.addEventListener('scroll', this.display)
+    },
+    // 將頁面滾到最上面
+    scrollby () {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+      // window.scrollBy是滾動特定的量
     }
 
   }

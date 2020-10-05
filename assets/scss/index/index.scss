@@ -1,4 +1,4 @@
-@import "./common/rwd";
+@import "../common/rwd";
 
 #index {
   padding: 20px 0 0px;
@@ -141,6 +141,35 @@
       li:nth-child(2n) {
         flex-direction: row-reverse;
       }
+    }
+  }
+}
+.gotop {
+  position: fixed;
+  right: 35px;
+  bottom: 20px;
+  background-color: green;
+  border-radius:50%;
+  z-index: 1;
+  cursor: pointer;
+  > .svg_box {
+    position: relative;
+    
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 50%;
+
+    
+    > .tran {
+      
+      border-color: transparent transparent white transparent;
+      border-style: solid solid solid solid;
+      border-width: 20px;
+      position: absolute;
+      top: 0px;
+      left: 10px;
     }
   }
 }

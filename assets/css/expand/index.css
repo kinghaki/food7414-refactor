@@ -136,4 +136,33 @@
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
 }
+
+.gotop {
+  position: fixed;
+  right: 35px;
+  bottom: 20px;
+  background-color: green;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.gotop > .svg_box {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.gotop > .svg_box > .tran {
+  border-color: transparent transparent white transparent;
+  border-style: solid solid solid solid;
+  border-width: 20px;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+}
 /*# sourceMappingURL=index.css.map */

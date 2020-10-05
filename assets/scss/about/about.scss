@@ -1,0 +1,81 @@
+@import "../common/rwd";
+#about {
+    margin: 200px 0;
+    @include rwd(phone){
+        margin: 100px 0;
+    }
+    > .main {
+        background-color: #eaf0ed;
+        position: relative;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        @include rwd(phone){
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: transparent;
+            height: 650px;
+            // margin-bottom: 50px; 
+        }
+        > .maintitle {
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+            font-size: 35px;
+            color: #3f5d45;
+            font-weight: 700;
+            letter-spacing: 4px;
+            @include rwd(phone){
+                   writing-mode: initial;
+                   text-orientation: initial;
+                   margin-bottom: 50px;
+            }
+            > .titleone {
+                position: absolute;
+                top: -40px;
+                left: 20px;
+                @include rwd(phone){
+                    position: initial;
+                }
+            }
+            > .titletwo {
+                position: absolute;
+                left: 85px;
+                top: 15px;
+                @include rwd(phone){
+                    position: initial;
+                }
+            }
+            > .titlethree {
+                position: absolute;
+                left: 150px;
+                top: 400px;
+                @include rwd(phone){
+                    position: initial;
+                }
+            }
+        }
+        >.maincontent{
+            height: 100%;
+            width: 100%;
+            border: 3px ridge gray;
+            // background-color: wheat;
+            background-color: rgba($color: black, $alpha: 0.1);
+            border-radius: 10px;
+            margin-left: 250px;
+            padding: 20px;
+            font-size: 20px;
+            line-height: 100px;
+            letter-spacing: 2px;
+            @include rwd(pad) {
+                font-size: 17px;
+                line-height: 55px;
+            }
+            @include rwd(phone){
+                font-size: 17px;
+                line-height: 45px;
+                margin-left: 0;
+                height: 500px;
+            }
+        }
+    }
+}

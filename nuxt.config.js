@@ -5,7 +5,13 @@ export default {
   ** See https://nuxtjs.org/api/configuration-mode
   */
   mode: 'universal',
+  loading: {
+    color: 'rgb(4, 153, 153)',
+    height: '3px',
+    throttle: 0
+  },
   /*
+
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
@@ -36,13 +42,18 @@ export default {
   */
   css: [
     // { src: './assets/scss/common/reset.scss', lang: 'scss'},
+    'vuetify/dist/vuetify.min.css',
     './assets/css/compress/reset.min.css'
+
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    // 到時候axios做額外的配置用的
+    '~plugins/vuetify.js',
+    '~plugins/component.js'
   ],
   /*
   ** Auto import components
@@ -53,6 +64,9 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    //
+    // '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
@@ -62,6 +76,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@neneos/nuxt-animate.css'
+
   ],
   // styleResources: {
   //   scss: './assets/scss/common/reset.scss'
@@ -71,7 +86,10 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:5001',
+    withCredentials: true
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
@@ -88,5 +106,11 @@ export default {
     //     })
     //   }
     // }
+
+    // vee-validate要加的
+    transpile: [
+      'vee-validate/dist/rules'
+    ],
+    vendor: ['vuetify']
   }
 }

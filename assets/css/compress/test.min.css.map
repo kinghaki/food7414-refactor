@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAMN,QAAQ,CAKR,MAAM,AAXC,CACL,MAAM,CAAE,cAAc,CACtB,OAAO,CAAE,IAAI,CACb,KAAK,CAAE,IAAI,CACZ,AAED,AAAA,QAAQ,CAKR,MAAM,AALG,CAEP,YAAY,CAAE,KAAK,CACpB,AAED,AAAA,MAAM,AAAC,CAEL,YAAY,CAAE,GAAG,CAClB",
+    "sources": [
+        "../../scss/test.scss"
+    ],
+    "names": [],
+    "file": "test.min.css"
+}

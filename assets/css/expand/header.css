@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Acme|Nunito&display=swap");
 .header {
-  font-family: 'Acme', 'Nunito', sans-serif;
+  font-family: "Acme", "Nunito", sans-serif;
   font-size: 22px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,9 +27,9 @@
 }
 
 .header.headerfixed2 {
-  height: 150px;
-  -webkit-transition: height 0.3s ease-in-out;
-  transition: height 0.3s ease-in-out;
+  height: 170px;
+  -webkit-transition: height 0.3s ease-out;
+  transition: height 0.3s ease-out;
 }
 
 .header > .imgblock {
@@ -60,6 +60,10 @@
   line-height: 30px;
 }
 
+.header > .imgblock > .menulist > li > .active {
+  color: #00796b;
+}
+
 .header > .imgblock > .menulist > li:hover {
   border-bottom: 2px solid red;
   line-height: 25px;
@@ -68,13 +72,13 @@
 }
 
 @media screen and (min-width: 980px) {
-  .header > .imgblock > .menulist > li:nth-child(-n+2) {
+  .header > .imgblock > .menulist > li:nth-child(-n + 2) {
     margin-right: 5vw;
   }
 }
 
 @media screen and (min-width: 650px) and (max-width: 979px) {
-  .header > .imgblock > .menulist > li:nth-child(-n+2) {
+  .header > .imgblock > .menulist > li:nth-child(-n + 2) {
     margin-right: 2.5vw;
   }
 }
@@ -97,23 +101,109 @@
           align-items: center;
 }
 
-.header > .userwhole > input {
+@media screen and (max-width: 649px) {
+  .header > .userwhole {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: 200px;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+}
+
+.header > .userwhole > .inputtooltip {
+  position: relative;
+}
+
+@media screen and (max-width: 649px) {
+  .header > .userwhole > .inputtooltip {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
+.header > .userwhole > .inputtooltip > input {
   height: 40px;
   text-indent: 5px;
   border-radius: 10px;
-  border: 1px solid #ced4da;
+  border: 3px ridge #ced4da;
 }
 
-.header > .userwhole > input:focus {
-  border: 2px solid pink;
+@media screen and (max-width: 649px) {
+  .header > .userwhole > .inputtooltip > input {
+    font-size: 15px;
+    width: 200px;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .header > .userwhole > .inputtooltip > input {
+    width: 125px;
+  }
+}
+
+.header > .userwhole > .inputtooltip > input:focus {
+  border: 3px solid pink;
   -webkit-box-shadow: 0px 0px 5px gray;
           box-shadow: 0px 0px 5px gray;
   -webkit-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
 }
 
+@media screen and (max-width: 649px) {
+  .header > .userwhole > .inputtooltip > input::-webkit-input-placeholder {
+    font-size: 15px;
+  }
+  .header > .userwhole > .inputtooltip > input:-ms-input-placeholder {
+    font-size: 15px;
+  }
+  .header > .userwhole > .inputtooltip > input::-ms-input-placeholder {
+    font-size: 15px;
+  }
+  .header > .userwhole > .inputtooltip > input::placeholder {
+    font-size: 15px;
+  }
+}
+
+.header > .userwhole > .inputtooltip > ul {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.header > .userwhole > .inputtooltip > ul > li {
+  text-indent: 10px;
+  padding-top: 5px;
+  padding: 15px 0;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 649px) {
+  .header > .userwhole > .inputtooltip > ul > li {
+    font-size: 16px;
+  }
+}
+
+.header > .userwhole > .inputtooltip > ul > li:hover {
+  background-color: rgba(128, 128, 128, 0.7) !important;
+  cursor: pointer;
+}
+
 .header > .userwhole > img {
   cursor: pointer;
+}
+
+@media screen and (max-width: 649px) {
+  .header > .userwhole > img {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-top: 20px;
+  }
 }
 
 .header > .userwhole > .userinfo {
@@ -169,38 +259,6 @@
   .header > .userwhole > .menulistbtn > [class^="btnline"] {
     text-align: center;
     border-top: 6px solid gray;
-  }
-}
-
-@media screen and (max-width: 649px) {
-  .header > .userwhole {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    height: 200px;
-    -ms-flex-line-pack: center;
-        align-content: center;
-  }
-  .header > .userwhole > input {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
-    width: 200px;
-    margin-top: 20px;
-  }
-}
-
-@media screen and (max-width: 649px) and (max-width: 470px) {
-  .header > .userwhole > input {
-    width: 125px;
-  }
-}
-
-@media screen and (max-width: 649px) {
-  .header > .userwhole > img {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
-    margin-top: 20px;
   }
 }
 

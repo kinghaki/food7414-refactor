@@ -1,6 +1,7 @@
 <!--  -->
 <template>
   <div>
+    <div>{{ ss }}</div>
     <div class="father" style>
       <div ref="father" class="trans">
         <div v-for="(value,index) in item" :key="index" :class="value.items" />
@@ -24,6 +25,9 @@
     <button class="lefts" @click="change">
       右
     </button>
+    <div class="background">
+      <div>123</div>
+    </div>
   </div>
 </template>
 
@@ -32,22 +36,27 @@ export default {
   layout: 'front',
   data () {
     return {
-      item: [{ items: 'a left' }, { items: 'b left' }, { items: 'c center' }, { items: 'd left' }, { items: 'e left' }]
+      item: [{ items: 'a left' }, { items: 'b left' }, { items: 'c center' }, { items: 'd left' }, { items: 'e left' }],
+      ss: '1'
 
     }
   },
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
-
+    console.log('created')
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
 
   },
+  updated () {
+    console.log('upadted')
+  },
   methods: {
     change () {
       //   this.$refs.father.style.marginRight = this.$refs.father.style.marginRight.replace('px', '') - 600 + 'px'
       //   //   this.$refs.father.style.marginRight
+      this.data = '2'
       this.$refs.father.style.transform = 'translateX(300px)'
       const that = this
       this.item.forEach((v, i) => {
@@ -115,5 +124,10 @@ export default {
     /* transform-style: preserve-3d; */
   transition: transform 0.5s ease-in-out ;
   transform: scale(1.5,1.5)
+}
+.background{
+  /* background-image: url("../assets/img/backstone.jpg"); */
+  width: 100%;
+  height: 500px;
 }
 </style>

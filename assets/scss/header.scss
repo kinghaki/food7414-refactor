@@ -4,7 +4,7 @@
 .header {
   // background-color: olivedrab;
   // border-bottom: 1px solid black;
-  font-family: 'Acme', 'Nunito', sans-serif;
+  font-family: "Acme", "Nunito", sans-serif;
   font-size: 22px;
   display: flex;
   align-items: center;
@@ -20,8 +20,6 @@
     // 如果不希望文字也被透明化就用rgba
     // 希望文字被透明就用opacity屬姓
 
-
-
     background-color: rgba($color: white, $alpha: 0.8);
 
     // opacity: 0.6;
@@ -32,8 +30,8 @@
   }
 
   &.headerfixed2 {
-    height: 150px;
-    transition: height 0.3s ease-in-out;
+    height: 170px;
+    transition: height 0.3s ease-out;
   }
 
   > .imgblock {
@@ -57,6 +55,9 @@
       > li {
         line-height: 30px;
         // background-color: darkcyan;
+        > .active {
+          color: #00796b;
+        }
       }
 
       > li:hover {
@@ -67,12 +68,11 @@
         transition: all 0.2s ease-in;
       }
 
-      > li:nth-child(-n+2) {
+      > li:nth-child(-n + 2) {
         // margin-right: 45px;
         @include rwd(pc) {
           margin-right: (100vw / 20);
         }
-
 
         @include rwd(pad) {
           // margin-right: 45px;
@@ -92,23 +92,81 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    @include rwd(phone) {
+      flex-wrap: wrap;
+      height: 200px;
+      align-content: center;
+    }
+    // @media screen and (max-width: 470px) {
+    //   width: 125px;
+    // }
+    > .inputtooltip {
+      position: relative;
+      @include rwd(phone) {
+        order: 1;
+      }
 
-    > input {
-      // width: 300px;
-      height: 40px;
-      text-indent: 5px;
-      border-radius: 10px;
-      border: 1px solid #ced4da;
+      > input {
+        // width: 300px;
+        height: 40px;
+        text-indent: 5px;
+        border-radius: 10px;
+        border: 3px ridge #ced4da;
+        @include rwd(phone) {
+          font-size: 15px;
+          width: 200px;
+          margin-top: 20px;
+        }
+        @media screen and (max-width: 470px) {
+          width: 125px;
+        }
 
-      &:focus {
-        border: 2px solid pink;
-        box-shadow: 0px 0px 5px gray;
-        transition: border 0.2s ease-in-out;
+        &:focus {
+          border: 3px solid pink;
+          box-shadow: 0px 0px 5px gray;
+          transition: border 0.2s ease-in-out;
+        }
+        @include rwd(phone) {
+          &::placeholder {
+            font-size: 15px;
+          }
+        }
+      }
+
+      > ul {
+        position: absolute;
+        width: 100%;
+        background-color: white;
+        z-index: 2;
+        border-radius: 10px;
+        // display: none;
+        > li {
+          text-indent: 10px;
+          padding-top: 5px;
+          // border-bottom: 1px solid black;
+          padding: 15px 0;
+          font-size: 20px;
+          @include rwd(phone){
+            font-size: 16px;
+          }
+          &:hover{
+            // 加!important 是因為 用js操控了style.background 導致優先權大於class
+            background-color: rgba($color: gray, $alpha: 0.7)!important; 
+            cursor: pointer;
+
+          }
+        }
       }
     }
 
-    > img {
+     >img {
       cursor: pointer;
+      @include rwd(phone) {
+        order: 2;
+        margin-top: 20px;
+      }
+      // order: 2;
+      // margin-top: 20px;
     }
 
     > .userinfo {
@@ -161,29 +219,7 @@
           border-top: 6px solid gray;
 
           // margin-top: 6px;
-       
         }
-      }
-    }
-
-    @include rwd(phone) {
-      flex-wrap: wrap;
-      height: 200px;
-      align-content: center;
-
-      > input {
-        order: 1;
-        width: 200px;
-        margin-top: 20px;
-
-        @media screen and (max-width: 470px) {
-          width: 125px;
-        }
-      }
-
-      > img {
-        order: 2;
-        margin-top: 20px;
       }
     }
   }
