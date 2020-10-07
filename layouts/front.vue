@@ -6,7 +6,7 @@
     </div>
     <div class="frontfixed">
       <!-- <input type="text"> -->
-      <transition-group name="menu">
+      <transition-group v-if="!($route.path =='/login' || $route.path =='/register' || $route.path =='/forget')" name="menu">
         <div
           v-for="(item) in headermenu.menu"
           v-show="headercount == item.id"

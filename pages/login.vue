@@ -50,7 +50,7 @@
               <v-row no-gutters align-content="center" class="test" style="margin-top:20px; justify-content:center;">
                 <!-- cols 沒有的尺寸會採用這個 -->
 
-                <v-btn :disabled="invalid" class="ml-sm-15" color="#1EA071" style="margin:0 10px">
+                <v-btn :disabled="invalid" class="ml-sm-15" color="#1EA071" style="margin:0 10px" @click="Login">
                   登入
                 </v-btn>
 
@@ -66,7 +66,8 @@
                 </v-col>
               </v-row> -->
               <div class="google">
-                <button class="googlelogin">
+                <!-- 通過在click.prevent解決了googleapi跳出視窗是空白頁的問題 -->
+                <button class="googlelogin" @click.prevent="googleapi">
                   google帳號登入
                 </button>
               </div>
@@ -87,7 +88,7 @@
 import { extend } from 'vee-validate'
 // eslint-disable-next-line camelcase
 import { alpha_num, required, min, max, email } from 'vee-validate/dist/rules'
-
+import { firebase } from '../plugins/firebase'
 // Vue.component('ValidationProvider', ValidationProvider)
 // Vue.component('ValidationObserver', ValidationObserver)
 
@@ -106,37 +107,22 @@ extend('required2', {
   message: '密碼不能為空白'
 })
 
-extend('min1', {
-  ...min,
-  message: '長度需包含6-9字，只能輸入英文和數字'
-})
-
 extend('min2', {
   ...min,
-  message: '長度需包含8-12字，只能輸入英文和數字'
-})
-extend('max1', {
-  ...max,
-  message: '長度需包含6-9字，只能輸入英文和數字'
+  message: '長度需包含8-12字，須包含英文和數字'
 })
 
 // eslint-disable-next-line no-unused-expressions
 extend('max2', {
   ...max,
-  message: '長度需包含8-12字，只能輸入英文和數字'
+  message: '長度需包含8-12字，須包含英文和數字'
 // eslint-disable-next-line no-sequences
 }),
-
-extend('alpha_num1', {
-  // eslint-disable-next-line camelcase
-  ...alpha_num,
-  message: '長度需包含6-9字，只能輸入英文和數字'
-})
 
 extend('alpha_num2', {
   // eslint-disable-next-line camelcase
   ...alpha_num,
-  message: '長度需包含8-12字，只能輸入英文和數字'
+  message: '長度需包含8-12字，須包含英文和數字'
 })
 
 extend('requ', {
@@ -148,18 +134,65 @@ export default {
   data () {
     return {
       value: {
-        acc: '',
-        pass: ''
+        acc: 'ian87030319@yahoo.com.tw',
+        pass: 'h94u454s06g4'
       },
       url: ''
     }
   },
-  async googleapi () {
-    await this.$axios.get('/api/googleapi',
-                          {
+  methods: {
+    googleapi () {
+      const that = this
+      const provider = new firebase.auth.GoogleAuthProvider()
+      // provider.addScope('profile')
+      // provider.addScope('email')
+      firebase.auth().signInWithPopup(provider).then(async function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const token = result.credential.accessToken
 
-                          })
+        // The signed-in user info.
+        const user = result.user
+
+        const { data } = await that.$axios.get('/api/gettoken', {
+          params: { email: user.email }
+        })
+        window.sessionStorage.setItem('token', data)
+        that.$router.push('/')
+        // ...
+      }).catch(function (error) {
+        // Handle Errors here.
+        const errorCode = error.code
+        const errorMessage = error.message
+        // The email of the user's account used.
+        const email = error.email
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = error.credential
+        alert('登入失敗')
+        // ...
+      })
+      // await this.$axios.get('/api/googleapi',
+      //                       {
+
+      //                       })
+    },
+    Login () {
+      const that = this
+      firebase.auth().signInWithEmailAndPassword(this.value.acc, this.value.pass).then(async () => {
+        const { data } = await that.$axios.get('/api/gettoken', {
+          params: { email: that.value.acc }
+
+        })
+        // console.log(data)
+        window.sessionStorage.setItem('token', data)
+        // Handle Errors here.
+        that.$router.push('/')
+        // ...
+      }).catch(() => {
+        alert('信箱或密碼錯誤')
+      })
+    }
   }
+
 }
 
 </script>
