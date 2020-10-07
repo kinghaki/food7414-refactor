@@ -66,9 +66,10 @@
             </div>
 
             <img src="../assets/font/fonts/search.svg" width="50" height="25" @click="searchinput">
-
+            <!-- <img v-else src="../assets/img/svg/user-edit-solid.svg" alt=""> -->
             <div class="userinfo">
               <i class="user icon-user" @click="$router.push('/login')" />
+
               <i class="cart icon-cart" />
             </div>
             <div class="menulistbtn" @click="isdisplay = 'block'">
@@ -210,7 +211,8 @@ export default {
       inputlen: '',
       clickdata: '',
       frontwaitfixed: '',
-      updownnum: 0
+      updownnum: 0,
+      token: ''
       // ss: 0
     }
   },
@@ -218,6 +220,7 @@ export default {
     inpclidata () {
       return this.$store.state.header.clickdata
     }
+
   },
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
