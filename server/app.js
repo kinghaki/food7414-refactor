@@ -5,21 +5,21 @@ const cors = require('cors')
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cors())
-app.all('/', (req, res, next) => {
-  const JWT = require('./Token/JWT')
-  const token = req.headers.authorization
-  if (token && req.path.includes('USER')) {
-    const data = JWT.checkToken(token)
-    if (data === 'error') {
-      res.status(403).json('錯誤的token')
-      return
-    }
-    next()
-  } else {
-    next()
-  }
-  // let token = req.headers.authorization
-})
+// app.all('/', (req, res, next) => {
+//   const JWT = require('./Token/JWT')
+//   const token = req.headers.authorization
+//   if (token && req.path.includes('USER')) {
+//     const data = JWT.checkToken(token)
+//     if (data === 'error') {
+//       res.status(403).json('錯誤的token')
+//       return
+//     }
+//     next()
+//   } else {
+//     next()
+//   }
+//   // let token = req.headers.authorization
+// })
 // 資料庫
 require('./database/mongoose')
 // require('./database/productall')
@@ -35,5 +35,8 @@ app.use('/api/shop', item)
 // JWT token
 const JWT = require('./route/getJWT')
 app.use('/api/gettoken', JWT)
+// ecpay
+const ecpay = require('./route/getecpay')
+app.use('/api/ecpay', ecpay)
 app.listen(5001)
 console.log('成功')

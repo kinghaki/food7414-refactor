@@ -7,6 +7,7 @@ router.get('/id', (req, res) => {
   switch (req.query.id) {
     case 'all':
       productall.find({}).then((data) => {
+        console.log(465466)
         res.json(data)
       })
       break

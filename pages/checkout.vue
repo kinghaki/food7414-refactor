@@ -1,21 +1,22 @@
+
 <template>
   <div>
-    <v-stepper v-model="e1">
+    <v-stepper v-model="e1" style="height:500px;margin:50px 0">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">
-          Name of step 1
+        <v-stepper-step :complete="e1 > 1" step="1" color="#033" :alt-labels="true">
+          購物車
         </v-stepper-step>
 
         <v-divider />
 
-        <v-stepper-step :complete="e1 > 2" step="2">
-          Name of step 2
+        <v-stepper-step :complete="e1 > 2" step="2" color="#033">
+          填寫資料
         </v-stepper-step>
 
         <v-divider />
 
-        <v-stepper-step step="3">
-          Name of step 3
+        <v-stepper-step step="3" color="#033">
+          訂單完成
         </v-stepper-step>
       </v-stepper-header>
 
@@ -25,8 +26,8 @@
             class="mb-5"
             color="grey lighten-1"
             height="200px"
+            dark
           />
-
           <v-btn
             color="primary"
             @click="e1 = 2"
@@ -44,6 +45,7 @@
             class="mb-5"
             color="grey lighten-1"
             height="200px"
+            dark
           />
 
           <v-btn
@@ -63,6 +65,7 @@
             class="mb-5"
             color="grey lighten-1"
             height="200px"
+            dark
           />
 
           <v-btn
@@ -94,5 +97,6 @@ export default {
 </script>
 
 <style>
+@import '@/assets/css/compress/checkout.min.css';
 
 </style>

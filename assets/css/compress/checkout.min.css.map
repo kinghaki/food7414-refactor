@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,MAAM,MAAM,MAAM,MAAM,SAAS,EAAE,KAAK,EACpC,AAAA,UAAU,AAAA,IAAK,CAAA,oBAAoB,EAAE,iBAAiB,AAAE,CACpD,OAAO,CAAE,eAAe,CAC3B",
+    "sources": [
+        "../../scss/checkout/checkout.scss"
+    ],
+    "names": [],
+    "file": "checkout.min.css"
+}
