@@ -124,7 +124,7 @@
   margin-top: 20px;
   font-size: 22px;
   font-weight: 550;
-  color: #F76968;
+  color: #f76968;
 }
 
 #item > .itemwhole > .itemcontent > .inputtotal {
@@ -180,5 +180,14 @@
   height: 40px;
   background-color: #bcd0b3;
   border: 1px solid gray;
+  border-radius: 10px;
+  font-weight: 700;
+  color: white;
+}
+
+#item > .itemwhole > .itemcontent .cart:hover {
+  -webkit-transition: color 0.5s ease-in;
+  transition: color 0.5s ease-in;
+  color: #d7e994;
 }
 /*# sourceMappingURL=item.css.map */

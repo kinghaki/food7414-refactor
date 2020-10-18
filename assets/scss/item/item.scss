@@ -45,13 +45,12 @@
             width: 50%;
             @include rwd(pc) {
                 margin-left: 30px;
-                
             }
             @include rwd(pad) {
                 margin-left: 30px;
                 width: 50%;
             }
-            @include rwd(phone){
+            @include rwd(phone) {
                 width: 70%;
             }
             > h2 {
@@ -80,19 +79,19 @@
                 margin-top: 20px;
                 font-size: 22px;
                 font-weight: 550;
-                color: #F76968
+                color: #f76968;
             }
             > .inputtotal {
                 display: flex;
                 margin-top: 90px;
-                @include rwd(phone){
+                @include rwd(phone) {
                     margin-top: 20px;
                 }
                 > .inputaddsub {
                     width: 100%;
                     // 解決inline-block空隙
                     font-size: 0px;
-                    
+
                     > .output {
                         display: inline-block;
                         // 在chorme內核 和 safari 設置inline-block會造成垂直不對齊
@@ -131,6 +130,13 @@
                 height: 40px;
                 background-color: #bcd0b3;
                 border: 1px solid gray;
+                border-radius: 10px;
+                font-weight: 700;
+                color: white;
+                &:hover {
+                    transition: color 0.5s ease-in;
+                    color: #d7e994;
+                }
             }
         }
     }

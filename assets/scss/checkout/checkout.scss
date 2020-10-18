@@ -1,5 +1,149 @@
-@media only screen and (max-width:959px){
-    .v-stepper:not(.v-stepper--vertical) .v-stepper__label  {
+@import "../common/rwd";
+// $linear-gradient:;
+@mixin linear($deg, $len, $color) {
+    $list: ();
+
+    @for $i from 0 through $len {
+        $list: append($list, $color, comma);
+    }
+
+    background-image: linear-gradient($deg, $list);
+}
+@media only screen and (max-width: 959px) {
+    .v-stepper:not(.v-stepper--vertical) .v-stepper__label {
         display: flex !important;
+    }
+}
+.stepperheader {
+    @include linear(60deg, 5, (rgba(#e66465, 0.3), rgba(#e66465, 0.3), rgba(#9198e5, 0.3), rgba(#9198e5, 0.3)));
+    height: 150px;
+}
+
+@include rwd(pc) {
+    table {
+        border: 1px solid black;
+        /* border-collapse會繼承 */
+        border-collapse: collapse;
+        width: 70%;
+        font-size: 20px;
+        /* padding: 12px; */
+    }
+    /* tr不用設置 */
+    td,
+    th {
+        border: 1px solid black;
+        padding: 20px;
+        vertical-align: middle;
+    }
+    th {
+        background-color: gray;
+    }
+    td {
+        width: 150px;
+        height: 200px;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .moneyform {
+        // background-color: darkgoldenrod;
+        tr {
+            td {
+                &:nth-child(1) {
+                    min-width: 150px;
+                }
+                img {
+                    width: 100%;
+                }
+
+                > .inputtotal {
+                    display: flex;
+                    // background-color: darkgray;
+                    justify-content: space-around;
+                    font-size: 20px;
+                    button {
+                        width: 60px;
+                        height: 40px;
+                        border: 2px solid gray;
+                        font-size: 25px;
+                        color: black;
+                        border-radius: 4px;
+                        &:hover {
+                            background-color: rgba($color: green, $alpha: 0.5);
+                        }
+                    }
+                    > .output {
+                        input {
+                            width: 100px;
+                            text-align: center;
+                            height: 40px;
+                            border: 1px solid gray;
+                        }
+                    }
+                }
+            }
+        }
+        > .countabsolute {
+            position: absolute;
+            // top: 599px;
+            // right: 65px;
+            width: 23%;
+            top: 0;
+            right: 30px;
+            // background-color:darkkhaki;
+            > .countfixed {
+                position: absolute;
+                width: 100%;
+                top: 0;
+                left: 0;
+                background-color: #dcdcdc;
+                display: flex;
+                flex-direction: column;
+                margin-left: 40px;
+                padding: 20px 20px;
+
+                > .totalcount {
+                    display: flex;
+                    align-items: center;
+                    margin: 100px 0;
+                    > .totalcountheader {
+                        font-size: 30px;
+                        font-weight: 700;
+                        background-color: darkcyan;
+                        // white-space: nowrap;
+                    }
+                    > .totalcountmain {
+                        padding-left: 50px;
+                        font-size: 30px;
+                        color: red;
+                        white-space: nowrap;
+                    }
+                }
+                > .nextstop {
+                    background-color: #1ea071;
+                    height: 70px;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    font-size: 20px;
+                    color: white;
+                    &:hover {
+                        transition: color 0.5s ease-in;
+                        color: #D7E994;
+                    }
+                }
+                > .goshop {
+                    margin-top: 50px;
+                    height: 70px;
+                    background-color: #9b9b9b;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    font-size: 20px;
+                    color: white;
+                    &:hover {
+                        transition: color 0.5s ease-in;
+                        color: #D7E994;
+                    }
+                }
+            }
+        }
     }
 }

@@ -4,6 +4,9 @@
     <!-- v-app原本背景色預設白色 -->
     <v-app style="background-color:transparent">
       <div class="wholeselcete">
+        <button @click="$router.push('/checkout')">
+          checkout
+        </button>
         <span class="showoption">顯示方式 :</span>
         <select v-model="selectvalue" class="selcetedop" @change="sortvalue">
           <option value="0" disabled>
@@ -29,14 +32,17 @@
             <v-list rounded>
               <v-subheader>REPORTS</v-subheader>
               <v-list-item-group v-model="items" color="primary">
-                <v-list-item v-for="(item, index) in listitems" :key="index" link :to="item.path">
-                  <v-list-item-icon>
-                    <v-icon v-text="item.icon" />
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title v-text="item.text" />
-                  </v-list-item-content>
-                </v-list-item>
+                <!-- :to="item.path" -->
+                <div @click.stop="waitcircle">
+                  <v-list-item v-for="(item, index) in listitems" :key="index" link :to="item.path">
+                    <v-list-item-icon>
+                      <v-icon v-text="item.icon" />
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      <v-list-item-title v-text="item.text" />
+                    </v-list-item-content>
+                  </v-list-item>
+                </div>
               </v-list-item-group>
             </v-list>
           </v-card>
@@ -88,7 +94,7 @@
                   width="100%"
                   text
                   height="50"
-                  :to=" `/product/${$route.params.product}/item`"
+                  @click.stop="checklogin(item);waitcircle()"
                 >
                   <v-icon class="icon-cart" />
                   <span style="padding-left:10px">加入購物車</span>
@@ -138,6 +144,7 @@ export default {
       selectvalue: 0,
       selectflag: false,
       imgupdown: 'imgnone'
+
     }
   },
   computed: {
@@ -240,7 +247,45 @@ export default {
           }
         })
       }
+    },
+    async checklogin (value) {
+      const { data } = await this.$axios.get('/api/checktoken')
+      if (data) {
+        // 之後補充
+        // 要判斷登入權限 有登入才能加入購物車
+      } else {
+        value.count = 1// 初始添加購物車數量為1
+        const flag = this.$store.state.cart.cart.some((item, index) => {
+          if (item.name === value.name) {
+            return true
+          }
+          return false
+        })
+        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+        if (flag) {
+          // 這裡是數量+1
+          this.$store.commit('cart/addcountcart', value)
+          this.$store.commit('cart/totalcountcart', value.afterprice)
+        } else {
+          // 這裡是添加新產品
+          this.$store.commit('cart/updatecart', value)
+          this.$store.commit('cart/totalcountcart', value.afterprice)
+          this.$store.commit('cart/updatecountheight', 200)
+        }
+
+        // alert('請登入會員')
+        // this.$router.push('/login')
+      }
+    },
+    waitcircle () {
+      this.$store.commit('header/updatefrontwaitfixed')
+
+      const that = this
+      window.setTimeout(() => {
+        that.$store.commit('header/deletefrontwaitfixed')
+      }, 800)
     }
+
     //   console.log(this.$refs.father.style.marginRight)
   }
 }

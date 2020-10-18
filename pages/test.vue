@@ -26,7 +26,11 @@
       右
     </button>
     <div class="background">
-      <div>123</div>
+      <div>{{}}</div>
+    </div>
+    <input v-model="avc" type="text">
+    <div @click="ssss();gggg()">
+      1237
     </div>
   </div>
 </template>
@@ -37,8 +41,15 @@ export default {
   data () {
     return {
       item: [{ items: 'a left' }, { items: 'b left' }, { items: 'c center' }, { items: 'd left' }, { items: 'e left' }],
-      ss: '1'
+      ss: '1',
+      gg: 456,
+      avc: ''
 
+    }
+  },
+  watch: {
+    avc (value) {
+      console.log(value)
     }
   },
   // 生命周期 - 創建完成（訪問當前this實例）
@@ -67,7 +78,14 @@ export default {
         }
       })
     //   console.log(this.$refs.father.style.marginRight)
+    },
+    ssss () {
+      console.log(1)
+    },
+    gggg () {
+      console.log(2)
     }
+
   }
 }
 </script>

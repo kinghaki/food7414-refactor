@@ -37,18 +37,19 @@
         </div>
         <div class="inputtotal">
           <div class="inputaddsub">
-            <button :disabled="zero" :class="hover" @click="count--">
+            <button :disabled="zero" :class="hover" @click="subcount">
               -
             </button>
             <div class="output">
               {{ count }}
             </div>
-            <button @click="count++">
+            <button @click="addcount">
               +
             </button>
           </div>
         </div>
-        <button class="cart">
+        <!-- product頁面是加1個數 item葉面可以加不同個數 -->
+        <button class="cart" @click.stop="addcart(item); waitcircle()">
           加入購物車
         </button>
       </div>
@@ -115,6 +116,12 @@ export default {
 
   },
   methods: {
+    addcount () {
+      this.count += 1
+    },
+    subcount () {
+      this.count -= 1
+    },
     menuchoice (payload) {
       switch (payload) {
       case '主餐':
@@ -122,6 +129,40 @@ export default {
       case '飲品':
         return '/product/drink'
       }
+    },
+    async addcart (value) {
+      const { data } = await this.$axios.get('/api/checktoken')
+      if (data) {
+        // 之後補充
+        // 要判斷登入權限 有登入才能加入購物車
+      } else {
+        const counts = this.count
+        const flag = this.$store.state.cart.cart.some((item, index) => {
+          if (item.name === value.name) {
+            return true
+          }
+          return false
+        })
+        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+        if (flag) {
+          // 這裡是數量+多少都可
+          this.$store.commit('item/addcountcartitem', { value, counts })
+          this.$store.commit('item/totalcountcartitem', { value, counts })
+        } else {
+          // 這裡是添加新產品
+          this.$store.commit('item/updatecartitem', { value, counts })
+          this.$store.commit('item/totalcountcartitem', { value, counts })
+          this.$store.commit('cart/updatecountheight', 200)
+        }
+      }
+    },
+    waitcircle () {
+      this.$store.commit('header/updatefrontwaitfixed')
+
+      const that = this
+      window.setTimeout(() => {
+        that.$store.commit('header/deletefrontwaitfixed')
+      }, 800)
     }
   }
 }

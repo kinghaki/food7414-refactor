@@ -31,7 +31,7 @@
                 </nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/product/all" exact-active-class="active">
+                <nuxt-link to="/product/all" active-class="active" :class="productmainanddrink">
                   product
                 </nuxt-link>
               </li>
@@ -210,18 +210,27 @@ export default {
       isdisplay: 'none',
       inputlen: '',
       clickdata: '',
-      frontwaitfixed: '',
       updownnum: 0,
-      token: ''
+      token: '',
+      productmainanddrink: ''
       // ss: 0
     }
   },
   computed: {
     inpclidata () {
       return this.$store.state.header.clickdata
+    },
+    frontwaitfixed () {
+      return this.$store.state.header.frontwaitfixed
     }
 
   },
+  watch: {
+    $route (to, from) {
+      this.productMainDrink()
+    }
+  },
+
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
 
@@ -236,6 +245,8 @@ export default {
         this.headercount = 0
       }
     }, 1000000)
+    // 用來讓product連結激活
+
     // headermenu
     // this.$refs.frontlayout.style.height = this.$refs.frontfixed.style.height
     // window.addEventListener('resize', this.)
@@ -319,11 +330,11 @@ export default {
       // this.$refs.inputul.style.display = 'none'
     },
     searchinput () {
-      this.frontwaitfixed = 'frontwaitfixed'
+      this.$store.commit('header/updatefrontwaitfixed')
       this.$refs.inputul.style.display = 'none'
       window.setTimeout(() => {
         this.$router.push({ path: '/product/search', query: { search: this.inputlen } })
-        this.frontwaitfixed = ''
+        this.$store.commit('header/deletefrontwaitfixed')
         this.inputlen = ''
         this.updownnum = 0
       }, 800)
@@ -372,6 +383,15 @@ export default {
         this.$refs[`li${this.updownnum}`][0].style.backgroundColor = 'gray'
         this.inputlen = this.$refs[`li${this.updownnum}`][0].textContent.trim()
       }
+    },
+    // 用來使productmain 和 productdrink class觸發
+    productMainDrink () {
+      if (this.$route.path === '/product/main' || this.$route.path === '/product/drink') {
+        this.productmainanddrink = 'active'
+      } else {
+        this.productmainanddrink = ''
+      }
+      console.log(1)
     }
 
   }

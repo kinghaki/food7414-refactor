@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="ss">
     <button @click="test">
       測試
     </button>
@@ -11,13 +11,21 @@ export default {
   layout: 'front',
   data () {
     return {
-
+      url: ''
     }
   },
   methods: {
     async test () {
-      const url = await this.$axios.get('/api/ecpay')
-      console.log(url)
+      // axios預設content-type是application/json，server端接口需要把它改成form
+      const config = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+      const { data } = await this.$axios.post('/api/ecpay', {}, config)
+      console.log(data)
+      this.$refs.ss.innerHTML = data
+      document.querySelector('#_form_aiochk').submit()
     }
   }
 

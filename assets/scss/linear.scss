@@ -1,0 +1,25 @@
+
+
+@mixin test($test) {
+    $list:();
+    $list: append($test,$test,comma);
+    
+    background: linear-gradient($list);
+}
+.ss {
+    $gg: (rgba(red,0.5), rgba(black,0.5));
+    @include test($gg);
+    
+}
+.xx{
+    $gg: (yellow, black);
+    @include test($gg)
+}
+.gg{
+    color: red;
+    width :(red,black);
+}
+.hh{
+    width: 40px;
+    height: 40px;
+}

@@ -10,6 +10,23 @@ export const item = {
     },
     updateitem (state, payload) {
       state.item = payload
+    },
+    updatecartitem (states, payload) {
+      payload.value.count = payload.counts
+      this.state.cart.cart.push(payload.value)
+    },
+    // 把所有數量的值*各自單價加進來
+    totalcountcartitem (states, payload) {
+      this.state.cart.count += payload.counts * payload.value.afterprice
+    },
+    // 購物車項目+
+    addcountcartitem (states, payload) {
+      const that = this
+      this.state.cart.cart.forEach((value, index) => {
+        if (payload.value.name === value.name) {
+          that.state.cart.cart[index].count += payload.counts
+        }
+      })
     }
   },
 
