@@ -32,7 +32,7 @@
             <v-list rounded>
               <v-subheader>REPORTS</v-subheader>
               <v-list-item-group v-model="items" color="primary">
-                <!-- :to="item.path" -->
+                <!-- @click設在vuetify的元素上會有bug 所以添加div-->
                 <div @click.stop="waitcircle">
                   <v-list-item v-for="(item, index) in listitems" :key="index" link :to="item.path">
                     <v-list-item-icon>
@@ -170,7 +170,6 @@ export default {
       }
     },
     product () {
-      console.log(this.$store.state.item.product)
       return this.$store.state.item.product
     }
   },
@@ -270,7 +269,8 @@ export default {
           // 這裡是添加新產品
           this.$store.commit('cart/updatecart', value)
           this.$store.commit('cart/totalcountcart', value.afterprice)
-          this.$store.commit('cart/updatecountheight', 200)
+          this.$store.commit('cart/updatecountheight', 204)
+          this.$store.commit('header/updateproductcount')
         }
 
         // alert('請登入會員')

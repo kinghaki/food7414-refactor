@@ -26,17 +26,17 @@
             <div class="img" @click="$router.push('/')" />
             <ul class="menulist">
               <li>
-                <nuxt-link to="/" exact-active-class="active">
+                <nuxt-link to="/" exact-active-class="active" tag="button" style="outline:none">
                   Home
                 </nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/product/all" active-class="active" :class="productmainanddrink">
+                <nuxt-link to="/product/all" active-class="active" tag="button" style="outline:none" :class="productmainanddrink">
                   product
                 </nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/about" exact-active-class="active">
+                <nuxt-link to="/about" tag="button" exact-active-class="active" style="outline:none">
                   about
                 </nuxt-link>
               </li>
@@ -70,7 +70,9 @@
             <div class="userinfo">
               <i class="user icon-user" @click="$router.push('/login')" />
 
-              <i class="cart icon-cart" />
+              <i class="cart icon-cart">
+                <span>{{ $store.state.header.productcount }}</span>
+              </i>
             </div>
             <div class="menulistbtn" @click="isdisplay = 'block'">
               <div class="btnline1" />
@@ -212,7 +214,8 @@ export default {
       clickdata: '',
       updownnum: 0,
       token: '',
-      productmainanddrink: ''
+      productmainanddrink: '',
+      windowscrolltop: 0
       // ss: 0
     }
   },
@@ -252,10 +255,12 @@ export default {
     // window.addEventListener('resize', this.)
     window.addEventListener('scroll', this.headerfixed)
     window.addEventListener('scroll', this.bodyheight)
+    // window.addEventListener('scroll', this.smoothscroll)
   },
   destroyed () {
     window.clearInterval(this.header)
     window.removeEventListener('scroll', this.headerfixed)
+    window.removeEventListener('scroll', this.bodyheight)
   },
   methods: {
     headerfixed () {
@@ -393,6 +398,26 @@ export default {
       }
       console.log(1)
     }
+    // 用來使滾輪滑動平順
+
+    // 待解決:不知道如何讓滾輪便平滑
+
+    // async smoothscroll () {
+    //   // if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > this.windowscrolltop) {
+    //   //   window.scrollTo({ top: this.windowscrolltop + 100, behavior: 'smooth' })
+    //   //   const that = this
+    //   //   window.setTimeout(() => {
+    //   //     that.windowscrolltop += 100
+    //   //   }, 1000)
+    //   // } else {
+    //   //   window.scrollTo({ top: this.windowscrolltop - 100, behavior: 'smooth' })
+    //   //   const that = this
+    //   //   window.setTimeout(() => {
+    //   //     that.windowscrolltop -= 100
+    //   //   }, 1000)
+    //   // }
+
+    // }
 
   }
 

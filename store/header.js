@@ -2,7 +2,8 @@ export const header = {
   namespaced: true,
   state: {
     clickdata: '',
-    frontwaitfixed: ''
+    frontwaitfixed: '',
+    productcount: 0
   },
   mutations: {
     updateheaderinput (state, payload) {
@@ -13,6 +14,9 @@ export const header = {
     },
     deletefrontwaitfixed (state) {
       state.frontwaitfixed = ''
+    },
+    updateproductcount (state) {
+      state.productcount++
     }
   },
 

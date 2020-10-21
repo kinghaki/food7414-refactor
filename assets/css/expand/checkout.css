@@ -37,11 +37,19 @@
     vertical-align: middle;
     text-align: center;
   }
+  .moneyform > .noproduct {
+    margin-left: 22%;
+    line-height: 500px;
+  }
+  .moneyform tr {
+    max-height: 200px;
+  }
   .moneyform tr td:nth-child(1) {
     min-width: 150px;
   }
   .moneyform tr td img {
     width: 100%;
+    height: 160px;
   }
   .moneyform tr td > .inputtotal {
     display: -webkit-box;
@@ -121,7 +129,7 @@
   .moneyform > .countabsolute > .countfixed > .nextstop:hover {
     -webkit-transition: color 0.5s ease-in;
     transition: color 0.5s ease-in;
-    color: #D7E994;
+    color: #d7e994;
   }
   .moneyform > .countabsolute > .countfixed > .goshop {
     margin-top: 50px;
@@ -135,7 +143,128 @@
   .moneyform > .countabsolute > .countfixed > .goshop:hover {
     -webkit-transition: color 0.5s ease-in;
     transition: color 0.5s ease-in;
-    color: #D7E994;
+    color: #d7e994;
   }
+}
+
+.cheapcode {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  font-size: 25px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.cheapcode > .usecode {
+  width: 100%;
+  height: 50px;
+}
+
+.cheapcode > .inputcode {
+  width: 100%;
+  height: 100px;
+}
+
+@media screen and (max-width: 649px) {
+  .cheapcode > .inputcode {
+    height: 200px !important;
+  }
+}
+
+.cheapcode > .inputcode > .inputbuttoncode {
+  width: 100%;
+  height: 50px;
+}
+
+@media screen and (max-width: 649px) {
+  .cheapcode > .inputcode > .inputbuttoncode {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 150px !important;
+  }
+}
+
+.cheapcode > .inputcode > .inputbuttoncode > input {
+  border: 2px ridge #ced4da;
+  border-radius: 10px;
+  height: 40px;
+}
+
+@media screen and (max-width: 649px) {
+  .cheapcode > .inputcode > .inputbuttoncode > input {
+    width: 50%;
+  }
+}
+
+.cheapcode > .inputcode > .inputbuttoncode > button {
+  border: 1px solid #00796b;
+  border-radius: 5px;
+  color: #00796b;
+  height: 40px;
+  margin-left: 2px;
+}
+
+.cheapcode > .inputcode > .inputbuttoncode > button:hover {
+  background-color: #00796b;
+  color: white;
+}
+
+@media screen and (max-width: 649px) {
+  .cheapcode > .inputcode > .inputbuttoncode > button {
+    width: 50%;
+  }
+}
+
+.cheapcode .buttonstop {
+  width: 100%;
+}
+
+.cheapcode .buttonstop > .nextstop {
+  background-color: #1ea071;
+  height: 70px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+  width: 100px;
+}
+
+.cheapcode .buttonstop > .nextstop:hover {
+  -webkit-transition: color 0.5s ease-in;
+  transition: color 0.5s ease-in;
+  color: #d7e994;
+}
+
+.cheapcode .buttonstop > .beforestop {
+  background-color: #1ea071;
+  height: 70px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+  width: 100px;
+  background-color: rosybrown;
+}
+
+.cheapcode .buttonstop > .beforestop:hover {
+  -webkit-transition: color 0.5s ease-in;
+  transition: color 0.5s ease-in;
+  color: #d7e994;
 }
 /*# sourceMappingURL=checkout.css.map */

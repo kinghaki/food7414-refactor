@@ -9,6 +9,18 @@
 
     background-image: linear-gradient($deg, $list);
 }
+@mixin nextstop {
+    background-color: #1ea071;
+    height: 70px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    &:hover {
+        transition: color 0.5s ease-in;
+        color: #d7e994;
+    }
+}
 @media only screen and (max-width: 959px) {
     .v-stepper:not(.v-stepper--vertical) .v-stepper__label {
         display: flex !important;
@@ -26,6 +38,7 @@
         border-collapse: collapse;
         width: 70%;
         font-size: 20px;
+
         /* padding: 12px; */
     }
     /* tr不用設置 */
@@ -46,13 +59,19 @@
     }
     .moneyform {
         // background-color: darkgoldenrod;
+        > .noproduct {
+            margin-left: 22%;
+            line-height: 500px;
+        }
         tr {
+            max-height: 200px;
             td {
                 &:nth-child(1) {
                     min-width: 150px;
                 }
                 img {
                     width: 100%;
+                    height: 160px;
                 }
 
                 > .inputtotal {
@@ -119,16 +138,7 @@
                     }
                 }
                 > .nextstop {
-                    background-color: #1ea071;
-                    height: 70px;
-                    border-radius: 10px;
-                    font-weight: 700;
-                    font-size: 20px;
-                    color: white;
-                    &:hover {
-                        transition: color 0.5s ease-in;
-                        color: #D7E994;
-                    }
+                    @include nextstop();
                 }
                 > .goshop {
                     margin-top: 50px;
@@ -140,10 +150,78 @@
                     color: white;
                     &:hover {
                         transition: color 0.5s ease-in;
-                        color: #D7E994;
+                        color: #d7e994;
                     }
                 }
             }
+        }
+    }
+}
+
+.cheapcode {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    font-size: 25px;
+    padding: 50px 0;
+    text-align: center;
+    > .usecode {
+        width: 100%;
+        height: 50px;
+    }
+    > .inputcode {
+        width: 100%;
+        height: 100px;
+        @include rwd(phone) {
+            height: 200px !important;
+        }
+        > .inputbuttoncode {
+            width: 100%;
+            height: 50px;
+            @include rwd(phone) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                height: 150px !important;
+            }
+            > input {
+                border: 2px ridge #ced4da;
+                border-radius: 10px;
+                height: 40px;
+                @include rwd(phone) {
+                    width: 50%;
+                }
+            }
+            > button {
+                border: 1px solid #00796b;
+                border-radius: 5px;
+                color: #00796b;
+                height: 40px;
+                margin-left: 2px;
+                &:hover {
+                    background-color: #00796b;
+                    color: white;
+                }
+
+                @include rwd(phone) {
+                    width: 50%;
+                }
+            }
+        }
+    }
+    .buttonstop {
+        width: 100%;
+        > .nextstop {
+            @include nextstop();
+            width: 100px;
+        }
+        > .beforestop {
+            @include nextstop();
+            width: 100px;
+            background-color: rosybrown;
         }
     }
 }

@@ -29,7 +29,10 @@
             :height="countsfixed"
           >
             <div class="moneyform">
-              <table>
+              <h2 v-if="cart.length === 0" class="noproduct">
+                購物車內無商品，請返回產品列表選購 !
+              </h2>
+              <table v-else>
                 <thead>
                   <tr>
                     <th style="width:300px">
@@ -79,7 +82,7 @@
                 </tbody>
               </table>
               <div class="countabsolute">
-                <div class="countfixed">
+                <div ref="countfixed" class="countfixed">
                   <div class="totalcount">
                     <div class="totalcountheader">
                       金額總計
@@ -91,7 +94,7 @@
                       $ {{ count }}
                     </div>
                   </div>
-                  <button class="nextstop">
+                  <button class="nextstop" @click="e1 = 2">
                     下一步
                   </button>
                   <button class="goshop">
@@ -111,48 +114,52 @@
           <v-btn text>
             Cancel
           </v-btn>
+          </v-card> -->
+        </v-stepper-content>
+
+        <v-stepper-content step="2">
+          <v-card
+            class="mb-5"
+            color="grey lighten-1"
+            height="500px"
+          >
+            <div class="cheapcode">
+              <div class="usecode">
+                使用折扣碼:
+              </div>
+              <div class="inputcode">
+                <div class="inputbuttoncode">
+                  <input type="text"><button>套用折扣碼</button>
+                </div>
+                <i>請輸入<b>MrLight</b>即享30元優惠</i>
+              </div>
+              <div class="buttonstop">
+                <button class="beforestop" @click="e1 = 1">
+                  上一步
+                </button>
+                <button class="nextstop" @click="ecpay()">
+                  下一步
+                </button>
+              </div>
+              <div ref="ecpay" />
+            </div>
           </v-card>
-        </v-stepper-content> -->
-
-          <v-stepper-content step="2">
-            <v-card
-              class="mb-5"
-              color="grey lighten-1"
-              height="200px"
-              dark
-            />
-
-            <v-btn
-              color="primary"
-              @click="e1 = 3"
-            >
-              Continue
-            </v-btn>
-
-            <v-btn text>
-              Cancel
-            </v-btn>
-          </v-stepper-content>
-
-          <v-stepper-content step="3">
-            <v-card
-              class="mb-5"
-              color="grey lighten-1"
-              height="200px"
-              dark
-            />
-
-            <v-btn
-              color="primary"
-              @click="e1 = 1"
-            >
-              Continue
-            </v-btn>
-
-            <v-btn text>
-              Cancel
-            </v-btn>
-          </v-stepper-content>
+        </v-stepper-content>
+        <v-stepper-content step="3">
+          <v-card
+            class="mb-5"
+            color="grey lighten-1"
+            height="200px"
+            dark
+          />
+          <div class="buttonstop">
+            <button class="beforestop" @click="e1 = 2">
+              上一步
+            </button>
+            <button class="nextstop">
+              送出
+            </button>
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -165,11 +172,11 @@ export default {
   data () {
     return {
       e1: 1
+
     }
   },
   computed: {
     cart () {
-      console.log(this.$store.state.cart.cart)
       return this.$store.state.cart.cart
     },
     count () {
@@ -182,14 +189,26 @@ export default {
   mounted () {
     window.addEventListener('scroll', this.countfixed)
   },
+  destroyed () {
+    window.removeEventListener('scroll', this.countfixed)
+  },
   methods: {
     countfixed () {
-      console.log(document.documentElement.clientHeight || document.body.clientHeight)
+      if (window.pageYOffset >= 500 || document.documentElement.scrollTop >= 500 || document.body.scrollTop >= 500) {
+        console.log(this.$refs.countfixed.style.top)
+        this.$refs.countfixed.style.top = (window.pageYOffset || document.documentElement.scrollTop ||
+          document.body.scrollTop) - 500 + 'px'
+      }
     },
     deletecart (item, index) {
-      this.$store.commit('cart/deletecart', { item, index })
-      // 刪除商品高度要減掉
-      this.$store.commit('cart/updatecountheight', -200)
+      this.$store.commit('header/updatefrontwaitfixed')
+      const that = this
+      window.setTimeout(() => {
+        that.$store.commit('header/deletefrontwaitfixed')
+        this.$store.commit('cart/deletecart', { item, index })
+        // 刪除商品高度要減掉
+        this.$store.commit('cart/updatecountheight', -204)
+      }, 800)
     },
     pluscountcart (payload) {
       if (payload.item.count < 30) {
@@ -206,7 +225,6 @@ export default {
     },
     onlynumber (event) {
       event.target.value = event.target.value.replace(/[^\d]/g, '')
-      console.log(event.target.value)
     },
     changecountcart (item, event) {
       if (event.target.value === '') {
@@ -226,8 +244,25 @@ export default {
       this.$store.commit('cart/totalcountcart', data)
       //  用來手動輸入數量
       this.$store.commit('cart/inputcountcart', { index: item.index, value: event.target.value })
-    }
+    },
+    // 金流
+    ecpay () {
+      this.$store.commit('header/updatefrontwaitfixed')
 
+      const that = this
+      window.setTimeout(async () => {
+        that.$store.commit('header/deletefrontwaitfixed')
+        const config = {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
+        const { data } = await that.$axios.post('/api/ecpay', {}, config)
+        console.log(data)
+        that.$refs.ecpay.innerHTML = data
+        document.querySelector('#_form_aiochk').submit()
+      }, 800)
+    }
   }
 }
 </script>

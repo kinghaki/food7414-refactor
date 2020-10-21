@@ -152,7 +152,8 @@ export default {
           // 這裡是添加新產品
           this.$store.commit('item/updatecartitem', { value, counts })
           this.$store.commit('item/totalcountcartitem', { value, counts })
-          this.$store.commit('cart/updatecountheight', 200)
+          this.$store.commit('cart/updatecountheight', 204)
+          this.$store.commit('header/updateproductcount')
         }
       }
     },

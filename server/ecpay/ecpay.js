@@ -12,7 +12,7 @@ const initParm = () => {
       TotalAmount: '88',
       ChoosePayment: 'ATM',
       PaymentType: 'aio',
-      TradeDesc: '交易描述',
+      TradeDesc: '交易描述會在哪',
       ItemName: '業新豪的3cm老二#老三',
       ReturnURL: 'https://55e9298f.ngrok.io/result',
       Remark: '交易備註',

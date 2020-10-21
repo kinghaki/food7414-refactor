@@ -80,19 +80,18 @@ video {
   vertical-align: baseline;
   box-sizing: border-box;
 }
-html{
-  scroll-behavior: smooth;
-}
-body{
+html,
+body {
   // overflow-x: hidden;
   // height: 1500px;
   // overflow-y: hidden;
   // overflow-y:scroll;
   
-
+  // 會讓頁面回到頂的時候滑動
+  scroll-behavior: smooth;
 }
 
-*{
+* {
   box-sizing: border-box;
   // background-repeat: initial;
 }
@@ -145,6 +144,6 @@ a {
     color: #000000;
   }
 }
-input:focus{
+input:focus {
   outline: none;
 }
