@@ -9,14 +9,22 @@ const initParm = () => {
       MerchantTradeNo: randomstring.generate({ length: 20, charset: 'alphanumeric' }), // 請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
       MerchantTradeDate: date,
       // ex: 2018/02/13 15:45:30 new Date() hour會少8小，所以使用gethour
-      TotalAmount: '88',
+      TotalAmount: '9999',
       ChoosePayment: 'ATM',
       PaymentType: 'aio',
       TradeDesc: '交易描述會在哪',
       ItemName: '業新豪的3cm老二#老三',
-      ReturnURL: 'https://55e9298f.ngrok.io/result',
+      ReturnURL: 'https://localhost:8888/ecpay',
       Remark: '交易備註',
-      CustomField1: '紅色*1'
+      CustomField1: '紅色*1',
+      // // 會在綠界頁面下多返回商店的按鈕
+      // ClientBackURL: 'http://localhost:8888/ecpay',
+
+      // 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
+      OrderResultURL: 'http://localhost:8888/test',
+
+      ClientRedirectURL: 'http://localhost:8888/test',
+      PaymentInfoURL: 'https://localhost:8888/test'
     },
     inv_params: {
       RelateNumber: randomstring.generate({ length: 30, charset: 'alphanumeric' }), // 請帶30碼uid ex: SJDFJGH24FJIL97G73653XM0VOMS4K

@@ -13,7 +13,7 @@ router.post('/ATM', (req, res) => {
   console.log('test')
   const create = new Ecpay() // create要在每次請求創建一個
   // eslint-disable-next-line no-undef
-  const htm = create.payment_client.aio_check_out_atm(ecpaydata().baseparam, ecpaydata().inv_params)
+  const htm = create.payment_client.aio_check_out_atm(params = ecpaydata().baseparam, 'http://localhost:8888/test', '', '', invoice = ecpaydata().inv_params)
   res.json(htm)
 })
 module.exports = router
