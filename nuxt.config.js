@@ -55,8 +55,8 @@ export default {
     '~plugins/vuetify.js',
     '~plugins/component.js',
     '~plugins/firebase.js',
-    '~/plugins/axios'
-    // { src: '~/plugins/vuexpersist', mode: 'client' }
+    { src: '~plugins/axios.js', mode: 'client' }
+    // { src: '~plugins/vuexpersist', mode: 'client' }
 
   ],
   /*

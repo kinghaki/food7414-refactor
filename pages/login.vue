@@ -160,7 +160,7 @@ export default {
         const { data } = await that.$axios.get('/api/gettoken', {
           params: { email: user.email }
         })
-        window.sessionStorage.setItem('token', data)
+        window.localStorage.setItem('token', data)
         that.$router.push('/')
         // 將味登入圖案改成登入圖案
         that.$store.state.header.usereditimg = false

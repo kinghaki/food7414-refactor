@@ -418,7 +418,6 @@ export default {
       } else {
         this.productmainanddrink = ''
       }
-      console.log(1)
     },
     logout () {
       window.setTimeout(() => {

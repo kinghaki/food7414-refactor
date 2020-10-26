@@ -19,6 +19,9 @@ export const header = {
     },
     updateproductcount (state) {
       state.productcount++
+    },
+    updatenegproductcount (state) {
+      state.productcount--
     }
   },
 

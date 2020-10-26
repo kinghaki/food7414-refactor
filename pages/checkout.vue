@@ -137,7 +137,7 @@
                 <button class="beforestop" @click="e1 = 1">
                   上一步
                 </button>
-                <button class="nextstop" @click="ecpay()">
+                <button class="nextstop" @click="ecpay">
                   下一步
                 </button>
               </div>
@@ -205,6 +205,7 @@ export default {
       const that = this
       window.setTimeout(() => {
         that.$store.commit('header/deletefrontwaitfixed')
+        this.$store.commit('header/updatenegproductcount')
         this.$store.commit('cart/deletecart', { item, index })
         // 刪除商品高度要減掉
         this.$store.commit('cart/updatecountheight', -204)
@@ -258,10 +259,10 @@ export default {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         }
-        const { data } = await that.$axios.post('/api/ecpay', {}, config)
+        const { data } = await that.$axios.post('/api/USER/ecpay', {}, config)
         console.log(data)
         that.$refs.ecpay.innerHTML = data
-        document.querySelector('#_form_aiochk').submit()
+        // document.querySelector('#_form_aiochk').submit()
       }, 800)
     },
     // 看有無登入在決定下一步

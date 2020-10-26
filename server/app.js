@@ -6,36 +6,37 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cors())
 // 用來驗證是不是非法獲取token的方法，不能使用userapi
-// app.all('/', (req, res, next) => {
-//   const JWT = require('./Token/JWT')
-//   const token = req.headers.authorization
-//   if (token && req.path.includes('USER')) {
-//     const data = JWT.checkToken(token)
-//     if (data === 'error') {
-//       res.status(403).json('錯誤的token')
-//       return
-//     }
-//     next()
-//   } else {
-//     next()
-//   }
-//   // let token = req.headers.authorization
-// })
-// 用來驗證是有無登入的請求
-app.get('/api/checkToken', (req, res) => {
+app.all('*', (req, res, next) => {
   const JWT = require('./Token/JWT')
   const token = req.headers.authorization
-  if (token) {
+  if (token && req.path.includes('USER')) {
     const data = JWT.checkToken(token)
     if (data === 'error') {
-      res.status(403).send('不對的token，請重新登入')
-    } else {
-      res.send(true)
+      res.status(403).json('錯誤的token')
+      return
     }
+    next()
   } else {
-    res.send(false)
+    next()
   }
+  // let token = req.headers.authorization
 })
+// 用來驗證是有無登入的請求
+// app.get('/api/checkToken', (req, res) => {
+//   const JWT = require('./Token/JWT')
+//   const token = req.headers.authorization
+//   console.log(54654)
+//   if (token) {
+//     const data = JWT.checkToken(token)
+//     if (data === 'error') {
+//       res.status(403).send('不對的token，請重新登入')
+//     } else {
+//       res.send(true)
+//     }
+//   } else {
+//     res.send(false)
+//   }
+// })
 // 資料庫
 require('./database/mongoose')
 // require('./database/productall')
@@ -53,6 +54,6 @@ const JWT = require('./route/getJWT')
 app.use('/api/gettoken', JWT)
 // ecpay
 const ecpay = require('./route/getecpay')
-app.use('/api/ecpay', ecpay)
+app.use('/api/USER/ecpay', ecpay)
 app.listen(5001)
 console.log('成功')
