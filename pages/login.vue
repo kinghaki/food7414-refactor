@@ -144,6 +144,7 @@ export default {
     googleapi () {
       const that = this
       const provider = new firebase.auth.GoogleAuthProvider()
+      provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
       // 這邊是添加登入要使使用者確認的訊息
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
       // provider.addScope('profile')
@@ -161,6 +162,11 @@ export default {
         })
         window.sessionStorage.setItem('token', data)
         that.$router.push('/')
+        // 將味登入圖案改成登入圖案
+        that.$store.state.header.usereditimg = false
+        window.setTimeout(() => {
+          alert('登入成功')
+        }, 200)
         // ...
       // eslint-disable-next-line handle-callback-err
       }).catch(function (error) {

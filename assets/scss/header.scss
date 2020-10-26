@@ -92,6 +92,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 15px;
     @include rwd(phone) {
       flex-wrap: wrap;
       height: 200px;
@@ -170,7 +171,10 @@
 
     > .userinfo {
       margin-left: 20px;
-
+      
+      // display: flex;
+      // align-items: center;
+      // 還沒登入的圖示
       .user {
         font-size: 25px;
         color: darkcyan;
@@ -181,7 +185,45 @@
           color: burlywood;
         }
       }
-
+      .menuabsolute {
+        position: relative;
+        display: inline;
+        // 登入的圖示
+        .userlogin {
+          width: 30px;
+          
+          cursor: pointer;
+          color: darkcyan;
+          margin-right: 10px;
+          &:hover {
+            color: burlywood;
+          }
+        }
+        >.menu{
+          display: none;
+          position: absolute;
+          z-index: 2;
+          background-color:wheat;
+          border-radius: 10px;
+          overflow: hidden;
+          left: -50px;
+          top: 28px;
+          >li{
+            white-space: nowrap;
+            padding: 20px 10px;
+            cursor: pointer;
+            font-weight: 600;
+            &:hover{
+              background-color: darkgray;
+            }
+          }
+        }
+        &:hover{
+          .menu{
+            display: block;
+          }
+        }
+      }
       .cart {
         font-size: 25px;
         color: black;

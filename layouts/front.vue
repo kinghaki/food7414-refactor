@@ -68,9 +68,20 @@
             <img src="../assets/font/fonts/search.svg" width="50" height="25" @click="searchinput">
             <!-- <img v-else src="../assets/img/svg/user-edit-solid.svg" alt=""> -->
             <div class="userinfo">
-              <i class="user icon-user" @click="$router.push('/login')" />
+              <i v-if="$store.state.header.usereditimg" class="user icon-user" @click="$router.push('/login')" />
+              <div v-else class="menuabsolute">
+                <img src="../assets/img/SVG/user-edit-solid.svg" class="userlogin" alt="" @click.stop="$router.push('/checkout')">
+                <ul class="menu">
+                  <li class="checkout" @click.stop="$router.push('/product/all')">
+                    商品區
+                  </li>
 
-              <i class="cart icon-cart">
+                  <nuxt-link tag="li" :to="'/'" class="logout" @click.native="logout">
+                    登出
+                  </nuxt-link>
+                </ul>
+              </div>
+              <i class="cart icon-cart" @click="$router.push('/checkout')">
                 <span>{{ $store.state.header.productcount }}</span>
               </i>
             </div>
@@ -212,6 +223,7 @@ export default {
       isdisplay: 'none',
       inputlen: '',
       clickdata: '',
+      // 方向鍵上下的索引值，添加灰色背景
       updownnum: 0,
       token: '',
       productmainanddrink: '',
@@ -291,20 +303,19 @@ export default {
     // 點擊第一個字提是眶出來
     async firstword () {
       this.$refs.inputul.style.display = 'block'
-
       await this.$store.dispatch('header/headerinput', this.inputlen)
 
       // 每次提是眶出來的東西數量不同必須歸零
       this.updownnum = 0
     },
-
+    // 離開焦點
     leavefirstword () {
-      // 1.onclick 和 onblur 衝突 使用延遲 我設最低100ms
-      // window.setTimeout(() => {
-      //   this.$refs.inputul.style.display = 'none'
-      // }, 0)
-
-      // 2.使用onmousedown 代替 onclick
+      // 非常重要，當滑鼠blur時會將所有得到的值背景清除
+      for (let i = 1; i <= this.inpclidata.length; i++) {
+        if (this.$refs[`li${i}`].length > 0) {
+          this.$refs[`li${i}`][0].style.backgroundColor = 'white'
+        }
+      }
       this.$refs.inputul.style.display = 'none'
       this.updownnum = 0
     },
@@ -320,7 +331,12 @@ export default {
     // 使用backspace鍵觸發的
     async deleteinputtext () {
       this.$refs.inputul.style.display = 'block'
-
+      // 非常重要，當滑鼠blur時會將所有得到的值背景清除
+      for (let i = 1; i <= this.inpclidata.length; i++) {
+        if (this.$refs[`li${i}`].length > 0) {
+          this.$refs[`li${i}`][0].style.backgroundColor = 'white'
+        }
+      }
       // 每次提是眶出來的東西不同必須歸零
       this.updownnum = 0
       await this.$store.dispatch('header/headerinput', this.inputlen)
@@ -382,11 +398,17 @@ export default {
         this.updownnum = 1
         this.$refs[`li${this.updownnum}`][0].style.backgroundColor = 'gray'
         this.inputlen = this.$refs[`li${this.updownnum}`][0].textContent.trim()
+
+        // 到時候清除顏色把索引值存起來
+        this.removebackground = this.updownnum
       } else {
         this.$refs[`li${this.updownnum}`][0].style.backgroundColor = 'transparent'
         this.updownnum += 1
         this.$refs[`li${this.updownnum}`][0].style.backgroundColor = 'gray'
         this.inputlen = this.$refs[`li${this.updownnum}`][0].textContent.trim()
+
+        // 到時候清除顏色把索引值存起來
+        this.removebackground = this.updownnum
       }
     },
     // 用來使productmain 和 productdrink class觸發
@@ -397,6 +419,12 @@ export default {
         this.productmainanddrink = ''
       }
       console.log(1)
+    },
+    logout () {
+      window.setTimeout(() => {
+        alert('登出成功')
+      }, 200)
+      this.$store.state.header.usereditimg = true
     }
     // 用來使滾輪滑動平順
 

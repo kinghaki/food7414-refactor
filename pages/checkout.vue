@@ -94,10 +94,10 @@
                       $ {{ count }}
                     </div>
                   </div>
-                  <button class="nextstop" @click="e1 = 2">
+                  <button class="nextstop" @click.stop="checklogin">
                     下一步
                   </button>
-                  <button class="goshop">
+                  <button class="goshop" @click.stop=" $router.push('/product/all')">
                     繼續購物
                   </button>
                 </div>
@@ -223,6 +223,7 @@ export default {
         this.$store.commit('cart/subcountcart', payload)
       }
     },
+    // oninput 會再處理完回傳值
     onlynumber (event) {
       event.target.value = event.target.value.replace(/[^\d]/g, '')
     },
@@ -262,6 +263,16 @@ export default {
         that.$refs.ecpay.innerHTML = data
         document.querySelector('#_form_aiochk').submit()
       }, 800)
+    },
+    // 看有無登入在決定下一步
+    checklogin () {
+      if (!this.$store.state.header.usereditimg && this.$store.state.cart.cart.length > 0) {
+        this.e1 = 2
+      } else if (!this.$store.state.header.usereditimg) {
+        alert('購物車無商品，請至商品專區購買')
+      } else {
+        alert('請先登入會員才能購買')
+      }
     }
   }
 }

@@ -99,6 +99,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-right: 15px;
 }
 
 @media screen and (max-width: 649px) {
@@ -219,6 +220,48 @@
 
 .header > .userwhole > .userinfo .user:hover {
   color: burlywood;
+}
+
+.header > .userwhole > .userinfo .menuabsolute {
+  position: relative;
+  display: inline;
+}
+
+.header > .userwhole > .userinfo .menuabsolute .userlogin {
+  width: 30px;
+  cursor: pointer;
+  color: darkcyan;
+  margin-right: 10px;
+}
+
+.header > .userwhole > .userinfo .menuabsolute .userlogin:hover {
+  color: burlywood;
+}
+
+.header > .userwhole > .userinfo .menuabsolute > .menu {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: wheat;
+  border-radius: 10px;
+  overflow: hidden;
+  left: -50px;
+  top: 28px;
+}
+
+.header > .userwhole > .userinfo .menuabsolute > .menu > li {
+  white-space: nowrap;
+  padding: 20px 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.header > .userwhole > .userinfo .menuabsolute > .menu > li:hover {
+  background-color: darkgray;
+}
+
+.header > .userwhole > .userinfo .menuabsolute:hover .menu {
+  display: block;
 }
 
 .header > .userwhole > .userinfo .cart {

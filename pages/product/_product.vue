@@ -4,9 +4,6 @@
     <!-- v-app原本背景色預設白色 -->
     <v-app style="background-color:transparent">
       <div class="wholeselcete">
-        <button @click="$router.push('/checkout')">
-          checkout
-        </button>
         <span class="showoption">顯示方式 :</span>
         <select v-model="selectvalue" class="selcetedop" @change="sortvalue">
           <option value="0" disabled>

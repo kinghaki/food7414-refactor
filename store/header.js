@@ -1,9 +1,11 @@
 export const header = {
   namespaced: true,
   state: {
-    clickdata: '',
+    clickdata: [],
     frontwaitfixed: '',
-    productcount: 0
+    productcount: 0,
+    // 看有無登入圖示
+    usereditimg: true
   },
   mutations: {
     updateheaderinput (state, payload) {
