@@ -140,6 +140,9 @@ export default {
       url: ''
     }
   },
+  created () {
+
+  },
   methods: {
     googleapi () {
       const that = this
@@ -163,7 +166,7 @@ export default {
         window.localStorage.setItem('token', data)
         that.$router.push('/')
         // 將味登入圖案改成登入圖案
-        that.$store.state.header.usereditimg = false
+        that.$store.commit('header/updatelogin')
         window.setTimeout(() => {
           alert('登入成功')
         }, 200)
@@ -201,6 +204,7 @@ export default {
         alert('信箱或密碼錯誤')
       })
     }
+
   }
 
 }

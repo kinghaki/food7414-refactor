@@ -21,7 +21,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: 8888, // default: 3000
+    port: 8887, // default: 3000
     host: '0.0.0.0', // default: localhost,
     timing: false
   },
@@ -55,8 +55,9 @@ export default {
     '~plugins/vuetify.js',
     '~plugins/component.js',
     '~plugins/firebase.js',
-    { src: '~plugins/axios.js', mode: 'client' }
-    // { src: '~plugins/vuexpersist', mode: 'client' }
+    '~/plugins/route.js',
+    { src: '~plugins/axios.js', mode: 'client' },
+    { src: '~plugins/vuexpersist', mode: 'client' }
 
   ],
   /*

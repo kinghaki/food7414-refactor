@@ -22,6 +22,12 @@ export const header = {
     },
     updatenegproductcount (state) {
       state.productcount--
+    },
+    updatelogin (state) {
+      state.usereditimg = false
+    },
+    updatelogout (state) {
+      state.usereditimg = true
     }
   },
 

@@ -42,6 +42,9 @@
               </li>
             </ul>
           </div>
+          <div @click="$router.push('/login')">
+            login
+          </div>
           <div class="userwhole">
             <div class="inputtooltip">
               <!-- keypress會失敗 不知道為啥 -->
@@ -67,24 +70,26 @@
 
             <img src="../assets/font/fonts/search.svg" width="50" height="25" @click="searchinput">
             <!-- <img v-else src="../assets/img/svg/user-edit-solid.svg" alt=""> -->
-            <div class="userinfo">
-              <i v-if="$store.state.header.usereditimg" class="user icon-user" @click="$router.push('/login')" />
-              <div v-else class="menuabsolute">
-                <img src="../assets/img/SVG/user-edit-solid.svg" class="userlogin" alt="" @click.stop="$router.push('/checkout')">
-                <ul class="menu">
-                  <li class="checkout" @click.stop="$router.push('/product/all')">
-                    商品區
-                  </li>
+            <client-only>
+              <div class="userinfo">
+                <i v-if="usereditimg" class="user icon-user" @click="$router.push('/login')" />
+                <div v-else class="menuabsolute">
+                  <img src="../assets/img/SVG/user-edit-solid.svg" class="userlogin" alt="" @click.stop="$router.push('/checkout')">
+                  <ul class="menu">
+                    <li class="checkout" @click.stop="$router.push('/product/all')">
+                      商品區
+                    </li>
 
-                  <nuxt-link tag="li" :to="'/'" class="logout" @click.native="logout">
-                    登出
-                  </nuxt-link>
-                </ul>
+                    <nuxt-link tag="li" :to="'/'" class="logout" @click.native="logout">
+                      登出
+                    </nuxt-link>
+                  </ul>
+                </div>
+                <i class="cart icon-cart" @click="$router.push('/checkout')">
+                  <span>{{ productcount }}</span>
+                </i>
               </div>
-              <i class="cart icon-cart" @click="$router.push('/checkout')">
-                <span>{{ $store.state.header.productcount }}</span>
-              </i>
-            </div>
+            </client-only>
             <div class="menulistbtn" @click="isdisplay = 'block'">
               <div class="btnline1" />
               <div class="btnline2" />
@@ -237,6 +242,12 @@ export default {
     },
     frontwaitfixed () {
       return this.$store.state.header.frontwaitfixed
+    },
+    usereditimg () {
+      return this.$store.state.header.usereditimg
+    },
+    productcount () {
+      return this.$store.state.header.productcount
     }
 
   },
@@ -423,7 +434,9 @@ export default {
       window.setTimeout(() => {
         alert('登出成功')
       }, 200)
-      this.$store.state.header.usereditimg = true
+      // 把登入圖案改成登出圖案
+      this.$store.commit('header/updatelogout')
+      window.localStorage.removeItem('token')
     }
     // 用來使滾輪滑動平順
 

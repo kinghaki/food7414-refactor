@@ -244,7 +244,7 @@ export default {
         })
       }
     },
-    async checklogin (value) {
+    checklogin (value) {
       value.count = 1// 初始添加購物車數量為1
       const flag = this.$store.state.cart.cart.some((item, index) => {
         if (item.name === value.name) {
