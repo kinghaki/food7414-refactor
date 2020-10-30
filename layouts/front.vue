@@ -45,6 +45,7 @@
           <div @click="$router.push('/login')">
             login
           </div>
+
           <div class="userwhole">
             <div class="inputtooltip">
               <!-- keypress會失敗 不知道為啥 -->
@@ -198,6 +199,7 @@
 <script>
 
 export default {
+
   data () {
     return {
       headermenu: {

@@ -88,6 +88,7 @@
 import { extend } from 'vee-validate'
 // eslint-disable-next-line camelcase
 import { alpha_num, required, min, max, email } from 'vee-validate/dist/rules'
+import mymixin from '@/mixin/mixin.js'
 import { firebase } from '../plugins/firebase'
 // Vue.component('ValidationProvider', ValidationProvider)
 // Vue.component('ValidationObserver', ValidationObserver)
@@ -131,6 +132,7 @@ extend('requ', {
 })
 export default {
   layout: 'front',
+  mixins: [mymixin],
   data () {
     return {
       value: {
@@ -140,7 +142,7 @@ export default {
       url: ''
     }
   },
-  created () {
+  mounted () {
 
   },
   methods: {

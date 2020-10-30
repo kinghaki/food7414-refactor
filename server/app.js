@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const cors = require('cors')
-app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 app.use(cors())
 // 用來驗證是不是非法獲取token的方法，不能使用userapi

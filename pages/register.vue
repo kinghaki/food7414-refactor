@@ -102,6 +102,7 @@
 import { extend } from 'vee-validate'
 // eslint-disable-next-line camelcase
 import { alpha_num, required, min, max, confirmed, email, regex } from 'vee-validate/dist/rules'
+import mymixin from '@/mixin/mixin.js'
 import { firebase } from '../plugins/firebase'
 // eslint-disable-next-line camelcase
 
@@ -152,6 +153,7 @@ extend('regex', {
 })
 export default {
   layout: 'front',
+  mixins: [mymixin],
   data () {
     return {
       value: {

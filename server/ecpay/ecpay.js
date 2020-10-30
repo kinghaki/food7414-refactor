@@ -10,21 +10,32 @@ const initParm = () => {
       MerchantTradeDate: date,
       // ex: 2018/02/13 15:45:30 new Date() hour會少8小，所以使用gethour
       TotalAmount: '9999',
-      ChoosePayment: 'ATM',
+
+      // ingnore設定無效，要看使用方法
+      IgnorePayment: 'ATM#CVS#BARCODE',
+
+      ChoosePayment: 'ALL',
       PaymentType: 'aio',
       TradeDesc: '交易描述會在哪',
       ItemName: '業新豪的3cm老二#老三',
-      ReturnURL: 'https://localhost:8888/ecpay',
-      Remark: '交易備註',
-      CustomField1: '紅色*1',
-      // // 會在綠界頁面下多返回商店的按鈕
-      // ClientBackURL: 'http://localhost:8888/ecpay',
+      ReturnURL: 'https://localhost:8887/ecpay',
+      // Remark: '交易備註',
+      // CustomField1: '紅色*1',
+      // 若使用Server端接收參數，付款完成、取號完成頁面上會出現
+      // 「返回商店」按鈕 ，用來返回您的商店網站的。
+      ClientBackURL: 'http://localhost:8887/ecpay',
 
       // 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
-      OrderResultURL: 'http://localhost:8888/test',
+      OrderResultURL: 'http://localhost:8887/test',
 
-      ClientRedirectURL: 'http://localhost:8888/test',
-      PaymentInfoURL: 'https://localhost:8888/test'
+      // 消費者使用非即時性付款(ATM、超商代碼、超商條碼)
+      // 訂單建立完成後，綠界科技會以Client POST
+      // 方式傳送付款相關資訊，並將使用者的畫面轉導到商家指定的頁面
+      ClientRedirectURL: 'http://localhost:8887/ecpay'
+
+      // 當消費使用 ATM/CVS/BARCODE 付款方式取號完成後，特店的server端接受綠界的取號結果訊息，並回應接
+      // 收訊息
+      // PaymentInfoURL: 'https://localhost:5001/api/USER/ecpay/ATMM'
     },
     inv_params: {
       RelateNumber: randomstring.generate({ length: 30, charset: 'alphanumeric' }), // 請帶30碼uid ex: SJDFJGH24FJIL97G73653XM0VOMS4K

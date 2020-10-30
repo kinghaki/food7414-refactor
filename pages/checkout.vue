@@ -28,81 +28,83 @@
             color="grey lighten-1"
             :height="countsfixed"
           >
-            <div class="moneyform">
-              <h2 v-if="cart.length === 0" class="noproduct">
-                購物車內無商品，請返回產品列表選購 !
-              </h2>
-              <table v-else>
-                <thead>
-                  <tr>
-                    <th style="width:300px">
-                      商品圖片
-                    </th>
-                    <th>商品名稱</th>
-                    <th>價格</th>
-                    <th>數量</th>
-                    <th>小計</th>
-                    <th>刪除</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(item,index) in cart" :key="index">
-                    <td>
-                      <img :src="item.img" alt="">
-                    </td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.afterprice }}</td>
-                    <td>
-                      <div class="inputtotal">
-                        <button @click.stop="subcountcart({item,index})">
-                          -
-                        </button>
-                        <div class="output">
-                          <input :value="item.count" type="text" @change="changecountcart({item,index},$event)" @input="onlynumber">
-                        </div>
+            <client-only>
+              <div class="moneyform">
+                <h2 v-if="cart.length === 0" class="noproduct">
+                  購物車內無商品，請返回產品列表選購 !
+                </h2>
+                <table v-else>
+                  <thead>
+                    <tr>
+                      <th style="width:300px">
+                        商品圖片
+                      </th>
+                      <th>商品名稱</th>
+                      <th>價格</th>
+                      <th>數量</th>
+                      <th>小計</th>
+                      <th>刪除</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item,index) in cart" :key="index">
+                      <td>
+                        <img :src="item.img" alt="">
+                      </td>
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.afterprice }}</td>
+                      <td>
+                        <div class="inputtotal">
+                          <button @click.stop="subcountcart({item,index})">
+                            -
+                          </button>
+                          <div class="output">
+                            <input :value="item.count" type="text" @change="changecountcart({item,index},$event)" @input="onlynumber">
+                          </div>
 
-                        <button @click.stop="pluscountcart( {item,index})">
-                          +
+                          <button @click.stop="pluscountcart( {item,index})">
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="totalcount">
+                          {{ item.count * item.afterprice }}
+                        </div>
+                      </td>
+                      <td>
+                        <button
+                          @click.stop="deletecart(item,index)"
+                        >
+                          刪除
                         </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="countabsolute">
+                  <div ref="countfixed" class="countfixed">
+                    <div class="totalcount">
+                      <div class="totalcountheader">
+                        金額總計
                       </div>
-                    </td>
-                    <td>
-                      <div class="totalcount">
-                        {{ item.count * item.afterprice }}
+                      <div v-if="count == 0" class="totalcountmain">
+                        0
                       </div>
-                    </td>
-                    <td>
-                      <button
-                        @click.stop="deletecart(item,index)"
-                      >
-                        刪除
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="countabsolute">
-                <div ref="countfixed" class="countfixed">
-                  <div class="totalcount">
-                    <div class="totalcountheader">
-                      金額總計
+                      <div v-else class="totalcountmain">
+                        $ {{ count }}
+                      </div>
                     </div>
-                    <div v-if="count == 0" class="totalcountmain">
-                      0
-                    </div>
-                    <div v-else class="totalcountmain">
-                      $ {{ count }}
-                    </div>
+                    <button class="nextstop" @click.stop="checklogin">
+                      下一步
+                    </button>
+                    <button class="goshop" @click.stop=" $router.push('/product/all')">
+                      繼續購物
+                    </button>
                   </div>
-                  <button class="nextstop" @click.stop="checklogin">
-                    下一步
-                  </button>
-                  <button class="goshop" @click.stop=" $router.push('/product/all')">
-                    繼續購物
-                  </button>
                 </div>
               </div>
-            </div>
+            </client-only>
           </v-card>
           <!-- <v-btn
             color="#4DB6AC"
@@ -129,7 +131,9 @@
               </div>
               <div class="inputcode">
                 <div class="inputbuttoncode">
-                  <input type="text"><button>套用折扣碼</button>
+                  <input v-model="mrLight" type="text"><button @click="checkCode">
+                    套用折扣碼
+                  </button>
                 </div>
                 <i>請輸入<b>MrLight</b>即享30元優惠</i>
               </div>
@@ -171,8 +175,8 @@ export default {
   layout: 'front',
   data () {
     return {
-      e1: 1
-
+      e1: 1,
+      mrLight: ''
     }
   },
   computed: {
@@ -250,19 +254,19 @@ export default {
     // 金流
     ecpay () {
       this.$store.commit('header/updatefrontwaitfixed')
-
       const that = this
       window.setTimeout(async () => {
         that.$store.commit('header/deletefrontwaitfixed')
-        const config = {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        }
-        const { data } = await that.$axios.post('/api/USER/ecpay', {}, config)
-        console.log(data)
+        const cartname = []
+        that.cart.forEach((value) => {
+          cartname.push(value.name)
+        })
+        const { data } = await that.$axios.post('/api/USER/ecpay', {
+          count: that.count,
+          cart: cartname
+        })
         that.$refs.ecpay.innerHTML = data
-        // document.querySelector('#_form_aiochk').submit()
+        document.querySelector('#_form_aiochk').submit()
       }, 800)
     },
     // 看有無登入在決定下一步
@@ -274,6 +278,10 @@ export default {
       } else {
         alert('請先登入會員才能購買')
       }
+    },
+    // 檢查優惠碼有沒套用成功
+    checkCode () {
+
     }
   }
 }

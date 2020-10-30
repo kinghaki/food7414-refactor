@@ -191,6 +191,7 @@
                 border: 2px ridge #ced4da;
                 border-radius: 10px;
                 height: 40px;
+                text-indent: 10px;
                 @include rwd(phone) {
                     width: 50%;
                 }

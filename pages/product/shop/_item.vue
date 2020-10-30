@@ -130,31 +130,25 @@ export default {
         return '/product/drink'
       }
     },
-    async addcart (value) {
-      const { data } = await this.$axios.get('/api/checktoken')
-      if (data) {
-        // 之後補充
-        // 要判斷登入權限 有登入才能加入購物車
-      } else {
-        const counts = this.count
-        const flag = this.$store.state.cart.cart.some((item, index) => {
-          if (item.name === value.name) {
-            return true
-          }
-          return false
-        })
-        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
-        if (flag) {
-          // 這裡是數量+多少都可
-          this.$store.commit('item/addcountcartitem', { value, counts })
-          this.$store.commit('item/totalcountcartitem', { value, counts })
-        } else {
-          // 這裡是添加新產品
-          this.$store.commit('item/updatecartitem', { value, counts })
-          this.$store.commit('item/totalcountcartitem', { value, counts })
-          this.$store.commit('cart/updatecountheight', 204)
-          this.$store.commit('header/updateproductcount')
+    addcart (value) {
+      const counts = this.count
+      const flag = this.$store.state.cart.cart.some((item, index) => {
+        if (item.name === value.name) {
+          return true
         }
+        return false
+      })
+      // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+      if (flag) {
+        // 這裡是數量+多少都可
+        this.$store.commit('item/addcountcartitem', { value, counts })
+        this.$store.commit('item/totalcountcartitem', { value, counts })
+      } else {
+        // 這裡是添加新產品
+        this.$store.commit('item/updatecartitem', { value, counts })
+        this.$store.commit('item/totalcountcartitem', { value, counts })
+        this.$store.commit('cart/updatecountheight', 204)
+        this.$store.commit('header/updateproductcount')
       }
     },
     waitcircle () {

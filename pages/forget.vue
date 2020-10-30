@@ -48,9 +48,11 @@
 </template>
 
 <script>
+import mymixin from '@/mixin/mixin.js'
 import { firebase } from '../plugins/firebase'
 export default {
   layout: 'front',
+  mixins: [mymixin],
   data () {
     return {
       email: ''
