@@ -89,6 +89,9 @@ app.use('/api/USER/addItem', addItem)
 // 用戶存放在cart商品
 const USERCart = require('./route/getUSERCart')
 app.use('/api/USER/getUSERCart', USERCart)
+// 用戶增加刪除cart商品
+const AddDeleteCart = require('./route/AddDeleteUSERCart')
+app.use('/api/USER/AddDeleteUSERCart', AddDeleteCart)
 // JWT token
 const JWT = require('./route/getJWT')
 app.use('/api/gettoken', JWT)

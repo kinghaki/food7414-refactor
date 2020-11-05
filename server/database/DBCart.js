@@ -13,6 +13,16 @@ const DBCartschema = new mongoose.Schema({
     type: Number,
     default: 0,
     required: true
+  },
+  height: {
+    type: Number,
+    default: 704,
+    required: true
+  },
+  productcount: {
+    type: Number,
+    default: 0,
+    required: true
   }
 
 })

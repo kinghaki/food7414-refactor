@@ -10,7 +10,7 @@
   word-spacing: 4px;
 }
 
-#item > .menuorder > li:nth-child(-n + 3) > a {
+#item > .menuorder > li:nth-child(-n + 3) > div {
   color: #408680;
 }
 

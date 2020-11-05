@@ -246,7 +246,7 @@ export default {
       return this.$store.state.header.usereditimg
     },
     productcount () {
-      return this.$store.state.header.productcount
+      return this.$store.state.cart.productcount
     }
 
   },

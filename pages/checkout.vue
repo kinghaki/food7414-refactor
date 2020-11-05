@@ -62,7 +62,7 @@
                             <input :value="item.count" type="text" @change="changecountcart({item,index},$event)" @input="onlynumber">
                           </div>
 
-                          <button @click.stop="pluscountcart( {item,index})">
+                          <button @click.stop="pluscountcart(item)">
                             +
                           </button>
                         </div>
@@ -74,7 +74,7 @@
                       </td>
                       <td>
                         <button
-                          @click.stop="deletecart(item,index)"
+                          @click.stop="deletecart(item)"
                         >
                           刪除
                         </button>
@@ -191,7 +191,6 @@ export default {
     }
   },
   created () {
-    this.getUSERCart()
   },
   mounted () {
     window.addEventListener('scroll', this.countfixed)
@@ -207,23 +206,23 @@ export default {
           document.body.scrollTop) - 500 + 'px'
       }
     },
-    deletecart (item, index) {
+    deletecart (item) {
+      // 等待的圈圈
       this.$store.commit('header/updatefrontwaitfixed')
       const that = this
-      window.setTimeout(() => {
+      window.setTimeout(async () => {
         that.$store.commit('header/deletefrontwaitfixed')
-        this.$store.commit('header/updatenegproductcount')
-        this.$store.commit('cart/deletecart', { item, index })
-        // 刪除商品高度要減掉
-        this.$store.commit('cart/updatecountheight', -204)
+        await that.$store.dispatch('cart/deleteUSERCart', item)
+        console.log(2)
       }, 800)
     },
-    pluscountcart (payload) {
-      if (payload.item.count < 30) {
-        this.$store.commit('cart/pluscountcart', payload)
-      } else {
-        alert('單項商品最多下單30個')
-      }
+    async pluscountcart (payload) {
+      await this.$store.dispatch('cart/addUSERCart', payload)
+    //   if (payload.item.count < 30) {
+    //     this.$store.commit('cart/pluscountcart', payload)
+    //   } else {
+    //     alert('單項商品最多下單30個')
+    //   }
     },
     subcountcart (payload) {
       // 結帳車數量=1不能在減了
@@ -287,13 +286,8 @@ export default {
       if (this.mrLight === 'MrLight') {
 
       }
-    },
-    async getUSERCart () {
-      const { data } = await this.$axios.post('/api/USER/checkLogin')
-      if (data) {
-        await this.$store.dispatch('cart/getUSERCart')
-      }
     }
+
   }
 }
 </script>

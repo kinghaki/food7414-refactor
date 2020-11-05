@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
     //   result = null
       const { afterprice } = await productall.findOne({ name: productInfo.name })
       const counts = afterprice * productInfo.count
-      await DBCart.create({ token: data, cart: productInfo, count: counts })
+      await DBCart.create({ token: data, cart: productInfo, count: counts, productcount: 1 })
     } else {
       const flag = result.cart.some((item) => {
         if (item.name === productInfo.name) {
@@ -39,14 +39,16 @@ router.post('/', (req, res) => {
         }
         //
       } else {
+        result.height += 204
+        result.productcount += 1
         result.cart.push(productInfo)
         const { afterprice } = await productall.findOne({ name: productInfo.name })
         result.count += (afterprice * 1)
-        await DBCart.updateOne({ token: data }, { count: result.count, cart: result.cart })
+        await DBCart.updateOne({ token: data }, { count: result.count, cart: result.cart, height: result.height, productcount: result.productcount })
       }
     }
+    res.end()
   })
-  res.end()
 })
 
 module.exports = router

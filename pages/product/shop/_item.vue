@@ -3,15 +3,15 @@
   <div id="item">
     <ul class="menuorder">
       <li>
-        <router-link to="/product/all">
+        <div @click="$router.push('/product/all')">
           全部商品
-        </router-link>
+        </div>
       </li>
       <span>/</span>
       <li>
-        <router-link :to="menuchoice(item.title)">
+        <div @click="menuchoice(item.title)">
           {{ item.title }}
-        </router-link>
+        </div>
       </li>
       <span>/</span>
       <li>
@@ -92,6 +92,7 @@ export default {
   computed: {
     item () {
       const [data] = this.$store.state.item.item
+      console.log(data)
       return data
     }
 
@@ -135,36 +136,37 @@ export default {
     menuchoice (payload) {
       switch (payload) {
       case '主餐':
-        return '/product/main'
+        this.$router.push('/product/main')
+        break
       case '飲品':
-        return '/product/drink'
+        this.$router.push('/product/drink')
       }
     },
     async addcart (value) {
       const { data } = await this.$axios.post('/api/USER/checkLogin')
 
       if (data) {
-        const counts = this.count
         value.count = this.count
-        this.$axios.post('/api/USER/addItem', value)
-        const flag = this.$store.state.cart.cart.some((item, index) => {
-          if (item.name === value.name) {
-            return true
-          }
-          return false
-        })
-        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
-        if (flag) {
-          // 這裡是數量+多少都可
-          this.$store.commit('item/addcountcartitem', { value, counts })
-          this.$store.commit('item/totalcountcartitem', { value, counts })
-        } else {
-          // 這裡是添加新產品
-          this.$store.commit('item/updatecartitem', { value, counts })
-          this.$store.commit('item/totalcountcartitem', { value, counts })
-          this.$store.commit('cart/updatecountheight', 204)
-          this.$store.commit('header/updateproductcount')
-        }
+        await this.$axios.post('/api/USER/addItem', value)
+        await this.$store.dispatch('cart/getUSERCartItem')
+        // const flag = this.$store.state.cart.cart.some((item, index) => {
+        //   if (item.name === value.name) {
+        //     return true
+        //   }
+        //   return false
+        // })
+        // // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+        // if (flag) {
+        //   // 這裡是數量+多少都可
+        //   this.$store.commit('item/addcountcartitem', { value, counts })
+        //   this.$store.commit('item/totalcountcartitem', { value, counts })
+        // } else {
+        //   // 這裡是添加新產品
+        //   this.$store.commit('item/updatecartitem', { value, counts })
+        //   this.$store.commit('item/totalcountcartitem', { value, counts })
+        //   this.$store.commit('cart/updatecountheight', 204)
+        //   this.$store.commit('header/updateproductcount')
+        // }
       } else {
         this.$router.push('/login')
       }
