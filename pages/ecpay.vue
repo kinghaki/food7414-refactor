@@ -9,6 +9,10 @@
     <button @click="credit">
       credit
     </button>
+    <button @click="testCookie">
+      testcookie
+    </button>
+    <div />
   </div>
 </template>
 
@@ -19,6 +23,9 @@ export default {
     return {
       url: ''
     }
+  },
+  mounted () {
+    console.log(document.cookie)
   },
   methods: {
     async test () {
@@ -52,6 +59,10 @@ export default {
       console.log(data)
       this.$refs.ss.innerHTML = data
       document.querySelector('#_form_aiochk').submit()
+    },
+    testCookie () {
+      const data = this.$axios.get('/api/cookie')
+      console.log(data)
     }
   }
 

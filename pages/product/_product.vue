@@ -244,25 +244,31 @@ export default {
         })
       }
     },
-    checklogin (value) {
-      value.count = 1// 初始添加購物車數量為1
-      const flag = this.$store.state.cart.cart.some((item, index) => {
-        if (item.name === value.name) {
-          return true
+    async checklogin (value) {
+      const { data } = await this.$axios.post('/api/USER/checkLogin')
+      if (data) {
+        value.count = 1// 初始添加購物車數量為1
+        this.$axios.post('/api/USER/addProduct', value)
+        const flag = this.$store.state.cart.cart.some((item, index) => {
+          if (item.name === value.name) {
+            return true
+          }
+          return false
+        })
+        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+        if (flag) {
+          // 這裡是數量+1
+          this.$store.commit('cart/addcountcart', value)
+          this.$store.commit('cart/totalcountcart', value.afterprice)
+        } else {
+          // 這裡是添加新產品
+          this.$store.commit('cart/updatecart', value)
+          this.$store.commit('cart/totalcountcart', value.afterprice)
+          this.$store.commit('cart/updatecountheight', 204)
+          this.$store.commit('header/updateproductcount')
         }
-        return false
-      })
-      // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
-      if (flag) {
-        // 這裡是數量+1
-        this.$store.commit('cart/addcountcart', value)
-        this.$store.commit('cart/totalcountcart', value.afterprice)
       } else {
-        // 這裡是添加新產品
-        this.$store.commit('cart/updatecart', value)
-        this.$store.commit('cart/totalcountcart', value.afterprice)
-        this.$store.commit('cart/updatecountheight', 204)
-        this.$store.commit('header/updateproductcount')
+        this.$router.push('/login')
       }
 
       // alert('請登入會員')

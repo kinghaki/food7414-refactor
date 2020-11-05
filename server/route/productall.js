@@ -4,10 +4,10 @@ const productall = require('../database/productall')
 // const productdrink = require('../database/productdrink')
 // const productmain = require('../database/productmain')
 router.get('/id', (req, res) => {
+  console.log(req.query.id)
   switch (req.query.id) {
     case 'all':
       productall.find({}).then((data) => {
-        console.log(465466)
         res.json(data)
       })
       break

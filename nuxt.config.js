@@ -21,7 +21,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: 8887, // default: 3000
+    port: 8888, // default: 3000
     host: '0.0.0.0', // default: localhost,
     timing: false
   },
@@ -94,8 +94,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:5001',
-    withCredentials: true
+    baseURL: 'http://localhost:5001'
+    // withCredentials: true
   },
   /*
   ** Build configuration

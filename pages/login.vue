@@ -162,10 +162,9 @@ export default {
         // The signed-in user info.
         const user = result.user
 
-        const { data } = await that.$axios.get('/api/gettoken', {
-          params: { email: user.email }
+        await that.$axios.post('/api/gettoken', {
+          email: user.email
         })
-        window.localStorage.setItem('token', data)
         that.$router.push('/')
         // 將味登入圖案改成登入圖案
         that.$store.commit('header/updatelogin')
@@ -193,12 +192,9 @@ export default {
     Login () {
       const that = this
       firebase.auth().signInWithEmailAndPassword(this.value.acc, this.value.pass).then(async () => {
-        const { data } = await that.$axios.get('/api/gettoken', {
-          params: { email: that.value.acc }
-
+        await that.$axios.post('/api/gettoken', {
+          email: that.value.acc
         })
-        // console.log(data)
-        window.sessionStorage.setItem('token', data)
         // Handle Errors here.
         that.$router.push('/')
         // ...

@@ -17,9 +17,7 @@
 // 2.這是用在nuxt的方式 =>
 export default function ({ $axios, redirect }) {
   $axios.onRequest((config) => {
-    if (window.localStorage.getItem('token')) {
-      config.headers.authorization = `${window.localStorage.getItem('token')}`
-    }
+    $axios.defaults.withCredentials = true
     return config
   })
 

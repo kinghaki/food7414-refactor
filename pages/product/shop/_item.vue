@@ -72,16 +72,16 @@ export default {
   //       item: data
   //     }
   //   },
-  async fetch ({ route, store, query }) {
-    const path = route.path.split('/')
-    // query.search 自己搜尋結果的葉面
+  // async fetch ({ route, store, query }) {
+  //   const path = route.path.split('/')
+  //   // query.search 自己搜尋結果的葉面
 
-    await store.dispatch('item/getitem', {
-      params: {
-        id: path[3]
-      }
-    })
-  },
+  //   await store.dispatch('item/getitem', {
+  //     params: {
+  //       id: path[3]
+  //     }
+  //   })
+  // },
   data () {
     return {
       zero: true,
@@ -109,13 +109,23 @@ export default {
   },
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
-
+    this.getItemId()
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
 
   },
   methods: {
+    getItemId () {
+      const path = this.$route.path.split('/')
+      // query.search 自己搜尋結果的葉面
+
+      this.$store.dispatch('item/getitem', {
+        params: {
+          id: path[3]
+        }
+      })
+    },
     addcount () {
       this.count += 1
     },
@@ -130,25 +140,33 @@ export default {
         return '/product/drink'
       }
     },
-    addcart (value) {
-      const counts = this.count
-      const flag = this.$store.state.cart.cart.some((item, index) => {
-        if (item.name === value.name) {
-          return true
+    async addcart (value) {
+      const { data } = await this.$axios.post('/api/USER/checkLogin')
+
+      if (data) {
+        const counts = this.count
+        value.count = this.count
+        this.$axios.post('/api/USER/addItem', value)
+        const flag = this.$store.state.cart.cart.some((item, index) => {
+          if (item.name === value.name) {
+            return true
+          }
+          return false
+        })
+        // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
+        if (flag) {
+          // 這裡是數量+多少都可
+          this.$store.commit('item/addcountcartitem', { value, counts })
+          this.$store.commit('item/totalcountcartitem', { value, counts })
+        } else {
+          // 這裡是添加新產品
+          this.$store.commit('item/updatecartitem', { value, counts })
+          this.$store.commit('item/totalcountcartitem', { value, counts })
+          this.$store.commit('cart/updatecountheight', 204)
+          this.$store.commit('header/updateproductcount')
         }
-        return false
-      })
-      // 判斷購物車項目裡有無 有的話數量加1 沒有的話添加商品
-      if (flag) {
-        // 這裡是數量+多少都可
-        this.$store.commit('item/addcountcartitem', { value, counts })
-        this.$store.commit('item/totalcountcartitem', { value, counts })
       } else {
-        // 這裡是添加新產品
-        this.$store.commit('item/updatecartitem', { value, counts })
-        this.$store.commit('item/totalcountcartitem', { value, counts })
-        this.$store.commit('cart/updatecountheight', 204)
-        this.$store.commit('header/updateproductcount')
+        this.$router.push('/login')
       }
     },
     waitcircle () {

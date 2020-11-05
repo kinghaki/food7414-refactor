@@ -42,9 +42,6 @@
               </li>
             </ul>
           </div>
-          <div @click="$router.push('/login')">
-            login
-          </div>
 
           <div class="userwhole">
             <div class="inputtooltip">
@@ -432,14 +429,15 @@ export default {
         this.productmainanddrink = ''
       }
     },
-    logout () {
+    async logout () {
       window.setTimeout(() => {
         alert('登出成功')
       }, 200)
       // 把登入圖案改成登出圖案
-      this.$store.commit('header/updatelogout')
-      window.localStorage.removeItem('token')
+      await this.$store.commit('header/updatelogout')
+      this.$axios.delete('/api/USER/clearJWT')
     }
+
     // 用來使滾輪滑動平順
 
     // 待解決:不知道如何讓滾輪便平滑

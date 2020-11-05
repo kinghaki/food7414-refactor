@@ -190,6 +190,9 @@ export default {
       return this.$store.state.cart.height + 'px'
     }
   },
+  created () {
+    this.getUSERCart()
+  },
   mounted () {
     window.addEventListener('scroll', this.countfixed)
   },
@@ -281,7 +284,15 @@ export default {
     },
     // 檢查優惠碼有沒套用成功
     checkCode () {
+      if (this.mrLight === 'MrLight') {
 
+      }
+    },
+    async getUSERCart () {
+      const { data } = await this.$axios.post('/api/USER/checkLogin')
+      if (data) {
+        await this.$store.dispatch('cart/getUSERCart')
+      }
     }
   }
 }
