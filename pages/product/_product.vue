@@ -270,6 +270,7 @@ export default {
         //   // this.$store.commit('header/updateproductcount')
         // }
       } else {
+        alert('請先登入會員')
         this.$router.push('/login')
       }
 

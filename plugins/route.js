@@ -1,11 +1,9 @@
-export default ({ app, store }) => {
+export default ({ app, store, $axios }) => {
   // Every time the route changes (fired on initialization too)
-  app.router.beforeEach((to, from, next) => {
+  app.router.beforeEach(async (to, from, next) => {
     // do something to validate
-    console.log(!JSON.parse(window.localStorage.getItem('vuex')).header.usereditimg)
-    console.log(1456546546)
-
-    if ((to.name === 'login' || to.name === 'register' || to.name === 'forget') && !JSON.parse(window.localStorage.getItem('vuex')).header.usereditimg) {
+    const { data } = await $axios.post('/api/USER/checkLogin')
+    if ((to.name === 'login' || to.name === 'register' || to.name === 'forget') && data) {
       next(false)
     } else {
       next()

@@ -68,9 +68,15 @@ export const mutations = {
   },
   updateAddUSERCart (state, payload) {
     state.cart = payload.cart
-    state.height = payload.height
     state.count = payload.count
-    state.productcount = payload.productcount
+  },
+  updateSubUSERCart (state, payload) {
+    state.cart = payload.cart
+    state.count = payload.count
+  },
+  updateHandInputUSERCart (state, payload) {
+    state.count = payload.count
+    state.cart = payload.cart
   }
 }
 
@@ -94,6 +100,16 @@ export const actions = {
     const api = '/api/USER/AddDeleteUSERCart/addCart'
     const { data } = await this.$axios.post(api, payload)
     commit('updateAddUSERCart', data)
+  },
+  async subUSERCart ({ commit }, payload) {
+    const api = '/api/USER/AddDeleteUSERCart/subCart'
+    const { data } = await this.$axios.post(api, payload)
+    commit('updateSubUSERCart', data)
+  },
+  async handInputUSERCart ({ commit }, payload) {
+    const api = '/api/USER/AddDeleteUSERCart/handInputCart'
+    const { data } = await this.$axios.post(api, payload)
+    commit('updateHandInputUSERCart', data)
   }
 }
 

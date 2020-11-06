@@ -55,11 +55,9 @@ export default {
     '~plugins/vuetify.js',
     '~plugins/component.js',
     '~plugins/firebase.js',
+    '~plugins/route.js',
     { src: '~plugins/axios.js', mode: 'client' },
     { src: '~plugins/vuexpersist', mode: 'client' }
-
-    // client-render問題:待解決
-    // { src: '~plugins/route.js', mode: 'client' }
 
   ],
   /*

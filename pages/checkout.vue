@@ -55,11 +55,11 @@
                       <td>{{ item.afterprice }}</td>
                       <td>
                         <div class="inputtotal">
-                          <button @click.stop="subcountcart({item,index})">
+                          <button @click.stop="subcountcart(item)">
                             -
                           </button>
                           <div class="output">
-                            <input :value="item.count" type="text" @change="changecountcart({item,index},$event)" @input="onlynumber">
+                            <input :value="item.count" type="text" @change="changecountcart(item,$event)" @input="onlynumber">
                           </div>
 
                           <button @click.stop="pluscountcart(item)">
@@ -224,34 +224,38 @@ export default {
     //     alert('單項商品最多下單30個')
     //   }
     },
-    subcountcart (payload) {
+    async subcountcart (payload) {
+      await this.$store.dispatch('cart/subUSERCart', payload)
       // 結帳車數量=1不能在減了
-      if (payload.item.count > 1) {
-        this.$store.commit('cart/subcountcart', payload)
-      }
+    //   if (payload.item.count > 1) {
+    //     this.$store.commit('cart/subcountcart', payload)
+    //   }
     },
     // oninput 會再處理完回傳值
     onlynumber (event) {
       event.target.value = event.target.value.replace(/[^\d]/g, '')
     },
     changecountcart (item, event) {
-      if (event.target.value === '') {
+      // eslint-disable-next-line eqeqeq
+      if (event.target.value === '' || event.target.value == 0) {
         event.target.value = 1
-        window.setTimeout(() => {
-          alert('請輸入數值')
-        })
-        return
+        item.value = event.target.value
+        this.$store.dispatch('cart/handInputUSERCart', item)
+      } else {
+        item.value = event.target.value
+        this.$store.dispatch('cart/handInputUSERCart', item)
       }
-      if (event.target.value >= 30) {
-        alert('單項商品最多下單30個')
-        event.target.value = 30
-      }
-      //   這裡是將原本數量的值先扣掉，再重新計算數量，金額才不會移植累加
-      const data = (event.target.value * item.item.afterprice) - (item.item.count * item.item.afterprice)
-      // 計算總金額的
-      this.$store.commit('cart/totalcountcart', data)
-      //  用來手動輸入數量
-      this.$store.commit('cart/inputcountcart', { index: item.index, value: event.target.value })
+      //   if (event.target.value >= 30) {
+      //     alert('單項商品最多下單30個')
+      //     event.target.value = 30
+      //   }
+
+    //   //   這裡是將原本數量的值先扣掉，再重新計算數量，金額才不會移植累加
+    //   const data = (event.target.value * item.item.afterprice) - (item.item.count * item.item.afterprice)
+    //   // 計算總金額的
+    //   this.$store.commit('cart/totalcountcart', data)
+    //   //  用來手動輸入數量
+    //   this.$store.commit('cart/inputcountcart', { index: item.index, value: event.target.value })
     },
     // 金流
     ecpay () {
