@@ -436,6 +436,8 @@ export default {
       // 把登入圖案改成登出圖案
       await this.$store.commit('header/updatelogout')
       this.$axios.delete('/api/USER/clearJWT')
+      window.localStorage.clear()
+      location.reload()
     }
 
     // 用來使滾輪滑動平順

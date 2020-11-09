@@ -41,16 +41,13 @@ app.post('/api/USER/checkLogin', (req, res) => {
   }
 })
 // 我在測試cookie的
-app.get('/api/cookie', (req, res) => {
-  console.log(req.signedCookies.d)
-
-  res.cookie('d', 456, {
-    path: '/',
-    signed: true, // 对cookie密码进行加密的话, 需要使用到cookieParser 對應上面的app.use("gg")
-    httpOnly: true,
-    maxAge: 30 * 24 * 60 * 60 * 1000
+app.get('/api/cookie', async (req, res) => {
+  const DBCart = require('./database/DBCart')
+  DBCart.findOne({ datassd: '123' }).then((result) => {
+    console.log(result)
+    result.foreach()
+    res.json(result)
   })
-  res.end()
 })
 // 用來驗證是有無登入的請求
 // app.get('/api/checkToken', (req, res) => {

@@ -27,7 +27,7 @@
         <v-col cols="12" sm="12" md="2">
           <v-card class="mb-md-0 mb-3" max-width="100%" height="270" tile>
             <v-list rounded>
-              <v-subheader>REPORTS</v-subheader>
+              <v-subheader>Category</v-subheader>
               <v-list-item-group v-model="items" color="primary">
                 <!-- @click設在vuetify的元素上會有bug 所以添加div-->
                 <div @click.stop="waitcircle">

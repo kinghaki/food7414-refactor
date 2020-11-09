@@ -263,32 +263,35 @@ export default {
       const that = this
       window.setTimeout(async () => {
         that.$store.commit('header/deletefrontwaitfixed')
-        const cartname = []
-        that.cart.forEach((value) => {
-          cartname.push(value.name)
-        })
-        const { data } = await that.$axios.post('/api/USER/ecpay', {
-          count: that.count,
-          cart: cartname
-        })
+
+        const { data } = await that.$axios.get('/api/USER/ecpay/Credit')
         that.$refs.ecpay.innerHTML = data
         document.querySelector('#_form_aiochk').submit()
       }, 800)
     },
-    // 看有無登入在決定下一步
-    checklogin () {
-      if (!this.$store.state.header.usereditimg && this.$store.state.cart.cart.length > 0) {
-        this.e1 = 2
-      } else if (!this.$store.state.header.usereditimg) {
-        alert('購物車無商品，請至商品專區購買')
+    // 檢查優惠碼有沒套用成功
+    async checkCode () {
+      if (this.mrLight === 'MrLight') {
+        const { data } = await this.$axios.post('/api/USER/ecpay/checkCode')
+        if (data === true) {
+          alert('優惠碼套用成功')
+        } else {
+          alert('優惠碼已經套用過了')
+        }
       } else {
-        alert('請先登入會員才能購買')
+        alert('優惠碼套用失敗')
       }
     },
-    // 檢查優惠碼有沒套用成功
-    checkCode () {
-      if (this.mrLight === 'MrLight') {
-
+    // 看有無登入在決定下一步
+    async checklogin () {
+      const { data } = await this.$axios.post('/api/USER/checkLogin')
+      if (data && this.$store.state.cart.cart.length > 0) {
+        this.e1 = 2
+      } else if (this.$store.state.cart.cart.length === 0) {
+        alert('購物車無商品，請至商品專區購買')
+        this.$router.push('/product/all')
+      } else {
+        alert('請先登入會員才能購買')
       }
     }
 

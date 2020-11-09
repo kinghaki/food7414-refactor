@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Ecpay = require('../ecpay/ECPAY_Payment_node_js')
 const ecpaydata = require('../ecpay/ecpay')
-
+const DBCart = require('../database/DBCart')
+const JWT = require('../Token/JWT')
 router.post('/', (req, res) => {
   const create = new Ecpay() // create要在每次請求創建一個
   const params = ecpaydata().baseparam
@@ -22,10 +23,29 @@ router.post('/ATM', (req, res) => {
   res.json(htm)
 })
 router.get('/Credit', (req, res) => {
-  console.log('test8797879')
-  const create = new Ecpay() // create要在每次請求創建一個
-  const htm = create.payment_client.aio_check_out_credit_onetime(ecpaydata().baseparam, ecpaydata().inv_params)
-  res.json(htm)
+  const token = req.signedCookies.Token
+  const { data } = JWT.checkToken(token)
+  DBCart.findOne({ token: data }).then((result) => {
+    // const results = JSON.parse(JSON.stringify(result))
+    const create = new Ecpay() // create要在每次請求創建一個
+    const htm = create.payment_client.aio_check_out_credit_onetime(ecpaydata(result.cart, result.count).baseparam, ecpaydata().inv_params)
+    res.json(htm)
+  })
+})
+router.post('/checkCode', (req, res) => {
+  const token = req.signedCookies.Token
+  const { data } = JWT.checkToken(token)
+  DBCart.findOne({ token: data }).then(async (result) => {
+    // const results = JSON.parse(JSON.stringify(result))
+    if (result.cheapcode === false) {
+      result.count -= 30
+      result.cheapcode = true
+      await DBCart.updateOne({ token: data }, { count: result.count, cheapcode: true })
+      res.json(true)
+    } else {
+      res.json(false)
+    }
+  })
 })
 
 module.exports = router

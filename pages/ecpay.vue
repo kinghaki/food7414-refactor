@@ -25,7 +25,6 @@ export default {
     }
   },
   mounted () {
-    console.log(document.cookie)
   },
   methods: {
     async test () {

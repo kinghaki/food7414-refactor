@@ -1,15 +1,23 @@
 // const ecpay = require('ecpay_payment_nodejs_quick')
 const randomstring = require('randomstring') // 用來產生隨機字福串
 const moment = require('moment')
-const initParm = () => {
+const initParm = (cart, total) => {
   // date用來產生日期的格式
   const date = moment().format('YYYY/MM/DD HH:mm:ss')
+  const items = []
+  // console.log(cart[0])
+  // console.log(JSON.parse(cart))
+  for (const i in cart) {
+    items.push(cart[i].name)
+  }
+  const itemname = items.join('#')
+  console.log()
   return {
     baseparam: {
       MerchantTradeNo: randomstring.generate({ length: 20, charset: 'alphanumeric' }), // 請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
       MerchantTradeDate: date,
       // ex: 2018/02/13 15:45:30 new Date() hour會少8小，所以使用gethour
-      TotalAmount: '9999',
+      TotalAmount: String(total),
 
       // ingnore設定無效，要看使用方法
       IgnorePayment: 'ATM#CVS#BARCODE',
@@ -17,21 +25,21 @@ const initParm = () => {
       ChoosePayment: 'ALL',
       PaymentType: 'aio',
       TradeDesc: '交易描述會在哪',
-      ItemName: '業新豪的3cm老二#老三',
-      ReturnURL: 'https://localhost:8887/ecpay',
+      ItemName: itemname,
+      ReturnURL: 'https://localhost:8888/ecpay',
       // Remark: '交易備註',
       // CustomField1: '紅色*1',
       // 若使用Server端接收參數，付款完成、取號完成頁面上會出現
       // 「返回商店」按鈕 ，用來返回您的商店網站的。
-      ClientBackURL: 'http://localhost:8887/ecpay',
+      ClientBackURL: 'http://localhost:8888/ecpay',
 
       // 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
-      OrderResultURL: 'http://localhost:8887/test',
+      OrderResultURL: 'http://localhost:8888/test',
 
       // 消費者使用非即時性付款(ATM、超商代碼、超商條碼)
       // 訂單建立完成後，綠界科技會以Client POST
       // 方式傳送付款相關資訊，並將使用者的畫面轉導到商家指定的頁面
-      ClientRedirectURL: 'http://localhost:8887/ecpay'
+      ClientRedirectURL: 'http://localhost:8888/ecpay'
 
       // 當消費使用 ATM/CVS/BARCODE 付款方式取號完成後，特店的server端接受綠界的取號結果訊息，並回應接
       // 收訊息

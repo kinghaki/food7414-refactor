@@ -153,7 +153,7 @@ export default {
       // 這邊是添加登入要使使用者確認的訊息
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
       // provider.addScope('profile')
-      // provider.addScope('email')
+      provider.addScope('email')
 
       firebase.auth().signInWithPopup(provider).then(async function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -161,7 +161,10 @@ export default {
 
         // The signed-in user info.
         const user = result.user
-
+        // await 兩次是因為第一次res.cookie不知道為甚麼沒有接收到
+        await that.$axios.post('/api/gettoken', {
+          email: user.email
+        })
         await that.$axios.post('/api/gettoken', {
           email: user.email
         })
@@ -191,12 +194,22 @@ export default {
     },
     Login () {
       const that = this
+
       firebase.auth().signInWithEmailAndPassword(this.value.acc, this.value.pass).then(async () => {
+        // await 兩次是因為第一次res.cookie不知道為甚麼沒有接收到
+        await that.$axios.post('/api/gettoken', {
+          email: that.value.acc
+        })
+
         await that.$axios.post('/api/gettoken', {
           email: that.value.acc
         })
         // Handle Errors here.
         that.$router.push('/')
+        that.$store.commit('header/updatelogin')
+        window.setTimeout(() => {
+          alert('登入成功')
+        }, 200)
         // ...
       }).catch(() => {
         alert('信箱或密碼錯誤')

@@ -61,6 +61,16 @@
 <script>
 export default {
   layout: 'front',
+  async fetch ({ store, route }) {
+    const path = route.path.split('/')
+    // query.search 自己搜尋結果的葉面
+
+    await store.dispatch('item/getitem', {
+      params: {
+        id: path[3]
+      }
+    })
+  },
   //   async asyncData ({ $axios, params }) {
   //     const api = '/api/product/item'
   //     const { data } = await $axios.get(api, {
@@ -72,16 +82,7 @@ export default {
   //       item: data
   //     }
   //   },
-  // async fetch ({ route, store, query }) {
-  //   const path = route.path.split('/')
-  //   // query.search 自己搜尋結果的葉面
 
-  //   await store.dispatch('item/getitem', {
-  //     params: {
-  //       id: path[3]
-  //     }
-  //   })
-  // },
   data () {
     return {
       zero: true,
@@ -92,7 +93,6 @@ export default {
   computed: {
     item () {
       const [data] = this.$store.state.item.item
-      console.log(data)
       return data
     }
 
@@ -110,23 +110,23 @@ export default {
   },
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
-    this.getItemId()
+    // this.getItemId()
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
 
   },
   methods: {
-    getItemId () {
-      const path = this.$route.path.split('/')
-      // query.search 自己搜尋結果的葉面
+    // async getItemId () {
+    //   const path = this.$route.path.split('/')
+    //   // query.search 自己搜尋結果的葉面
 
-      this.$store.dispatch('item/getitem', {
-        params: {
-          id: path[3]
-        }
-      })
-    },
+    //   await this.$store.dispatch('item/getitem', {
+    //     params: {
+    //       id: path[3]
+    //     }
+    //   })
+    // },
     addcount () {
       this.count += 1
     },

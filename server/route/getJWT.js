@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const JWT = require('../Token/JWT')
-router.post('/', (req, res) => {
-  console.log(req.body.email)
+router.post('/', async (req, res) => {
   const token = JWT.generateToken(req.body.email)
+  console.log(token)
   res.cookie('Token', token, {
     signed: true,
-    httpOnly: true
+    httpOnly: true,
+    secure: false
   })
-  res.status(200).end()
+  res.status(200).json(token)
   // res.status(200).json(token)
 })
 module.exports = router
