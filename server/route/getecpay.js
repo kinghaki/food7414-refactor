@@ -40,10 +40,25 @@ router.post('/checkCode', (req, res) => {
     if (result.cheapcode === false) {
       result.count -= 30
       result.cheapcode = true
-      await DBCart.updateOne({ token: data }, { count: result.count, cheapcode: true })
+      await DBCart.updateOne({ token: data }, { count: result.count, cheapcode: result.cheapcode })
       res.json(true)
     } else {
       res.json(false)
+    }
+  })
+})
+router.post('/takeCode', (req, res) => {
+  const token = req.signedCookies.Token
+  const { data } = JWT.checkToken(token)
+  DBCart.findOne({ token: data }).then(async (result) => {
+    // const results = JSON.parse(JSON.stringify(result))
+    if (result.cheapcode === true) {
+      result.count += 30
+      result.cheapcode = false
+      await DBCart.updateOne({ token: data }, { count: result.count, cheapcode: result.cheapcode })
+      res.end()
+    } else {
+      res.end()
     }
   })
 })

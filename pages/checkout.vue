@@ -138,7 +138,7 @@
                 <i>請輸入<b>MrLight</b>即享30元優惠</i>
               </div>
               <div class="buttonstop">
-                <button class="beforestop" @click="e1 = 1">
+                <button class="beforestop" @click="takeCode">
                   上一步
                 </button>
                 <button class="nextstop" @click="ecpay">
@@ -213,7 +213,6 @@ export default {
       window.setTimeout(async () => {
         that.$store.commit('header/deletefrontwaitfixed')
         await that.$store.dispatch('cart/deleteUSERCart', item)
-        console.log(2)
       }, 800)
     },
     async pluscountcart (payload) {
@@ -281,6 +280,11 @@ export default {
       } else {
         alert('優惠碼套用失敗')
       }
+    },
+    async takeCode () {
+      await this.$axios.post('/api/USER/ecpay/takeCode')
+      alert('返回後，套用優惠碼重置')
+      this.e1 = 1
     },
     // 看有無登入在決定下一步
     async checklogin () {

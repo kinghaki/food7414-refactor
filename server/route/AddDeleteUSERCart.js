@@ -84,4 +84,11 @@ router.post('/handInputCart', (req, res) => {
     })
   })
 })
+router.get('/createCart', (req, res) => {
+  const token = req.signedCookies.Token
+  const { data } = JWT.checkToken(token)
+  DBCart.findOne({ token: data }).then((result) => {
+    res.json(result)
+  })
+})
 module.exports = router

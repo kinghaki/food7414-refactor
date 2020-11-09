@@ -128,6 +128,13 @@
 export default {
   name: 'Index',
   layout: 'front',
+  // 當登入的時候看有無購物車項目在資料庫裡
+  async fetch ({ store, $axios }) {
+    const { data } = await $axios.post('/api/USER/checkLogin')
+    if (data) {
+      await store.dispatch('cart/createUSERCart')
+    }
+  },
   data () {
     return {
       productimg1: true,

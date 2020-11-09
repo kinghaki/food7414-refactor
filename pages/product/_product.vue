@@ -128,6 +128,22 @@ export default {
   //     }
   //   })
   // },
+  async fetch ({ route, store }) {
+    if (!route.query.search) {
+      await store.dispatch('item/getproduct', {
+        params: {
+          id: route.params.product
+        }
+      })
+    } else {
+      await store.dispatch('item/getproduct', {
+        params: {
+          id: route.params.product,
+          search: route.query.search
+        }
+      })
+    }
+  },
 
   data () {
     return {
@@ -181,7 +197,7 @@ export default {
   // 生命周期 - 創建完成（訪問當前this實例）
 
   created () {
-    this.getcreated()
+
   },
   mounted () {
 
@@ -219,22 +235,7 @@ export default {
         }
       }
     },
-    async getcreated () {
-      if (!this.$route.query.search) {
-        await this.$store.dispatch('item/getproduct', {
-          params: {
-            id: this.$route.params.product
-          }
-        })
-      } else {
-        await this.$store.dispatch('item/getproduct', {
-          params: {
-            id: this.$route.params.product,
-            search: this.$route.query.search
-          }
-        })
-      }
-    },
+
     async checklogin (value) {
       const { data } = await this.$axios.post('/api/USER/checkLogin')
       if (data) {

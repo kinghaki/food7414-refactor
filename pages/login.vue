@@ -168,7 +168,7 @@ export default {
         await that.$axios.post('/api/gettoken', {
           email: user.email
         })
-        that.$router.push('/')
+        that.$router.replace('/')
         // 將味登入圖案改成登入圖案
         that.$store.commit('header/updatelogin')
         window.setTimeout(() => {
@@ -205,10 +205,11 @@ export default {
           email: that.value.acc
         })
         // Handle Errors here.
-        that.$router.push('/')
+        that.$router.replace('/')
         that.$store.commit('header/updatelogin')
         window.setTimeout(() => {
           alert('登入成功')
+          location.reload()
         }, 200)
         // ...
       }).catch(() => {

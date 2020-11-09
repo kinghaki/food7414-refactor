@@ -258,7 +258,7 @@ export default {
 
   // 生命周期 - 創建完成（訪問當前this實例）
   created () {
-
+    console.log('test')
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
@@ -435,7 +435,7 @@ export default {
       }, 200)
       // 把登入圖案改成登出圖案
       await this.$store.commit('header/updatelogout')
-      this.$axios.delete('/api/USER/clearJWT')
+      await this.$axios.delete('/api/USER/clearJWT')
       window.localStorage.clear()
       location.reload()
     }
