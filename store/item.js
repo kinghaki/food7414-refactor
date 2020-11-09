@@ -27,6 +27,16 @@ export const mutations = {
         that.state.cart.cart[index].count += payload.counts
       }
     })
+  },
+  minToMax (state) {
+    state.product.sort((a, b) => {
+      return a.afterprice - b.afterprice
+    })
+  },
+  maxToMin (state) {
+    state.product.sort((a, b) => {
+      return b.afterprice - a.afterprice
+    })
   }
 }
 
@@ -42,6 +52,7 @@ export const actions = {
     console.log(data)
     commit('updateitem', data)
   }
+
 }
 
 export const getters = {

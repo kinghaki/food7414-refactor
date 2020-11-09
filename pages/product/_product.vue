@@ -196,34 +196,25 @@ export default {
           this.selectflag = true
           this.imgupdown = 'imgup'
           // 價錢由小排到大
-          this.product.sort((a, b) => {
-            return a.afterprice - b.afterprice
-          })
+          this.$store.commit('item/minToMax')
           break
         case '2':
           this.selectflag = true
           this.imgupdown = 'imgblock'
 
-          this.product.sort((a, b) => {
-            return b.afterprice - a.afterprice
-          })
+          this.$store.commit('item/maxToMin')
           break
         }
       } else {
         switch (this.selectvalue) {
         case '1':
           this.imgupdown = 'imgup'
+          this.$store.commit('item/minToMax')
 
-          this.product.sort((a, b) => {
-            return a.afterprice - b.afterprice
-          })
           break
         case '2':
           this.imgupdown = 'imgdown'
-
-          this.product.sort((a, b) => {
-            return b.afterprice - a.afterprice
-          })
+          this.$store.commit('item/maxToMin')
           break
         }
       }
