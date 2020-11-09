@@ -41,7 +41,7 @@ app.post('/api/USER/checkLogin', (req, res) => {
   }
 })
 // 我在測試cookie的
-app.get('/api/cookie', async (req, res) => {
+app.get('/api/cookie', (req, res) => {
   const DBCart = require('./database/DBCart')
   DBCart.findOne({ datassd: '123' }).then((result) => {
     console.log(result)
