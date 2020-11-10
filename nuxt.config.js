@@ -43,7 +43,7 @@ export default {
   css: [
     // { src: './assets/scss/common/reset.scss', lang: 'scss'},
     'vuetify/dist/vuetify.min.css',
-    './assets/css/compress/reset.min.css'
+    '~/assets/css/compress/reset.min.css'
 
   ],
   /*

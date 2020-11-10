@@ -66,13 +66,13 @@
               </ul>
             </div>
 
-            <img src="../assets/font/fonts/search.svg" width="50" height="25" @click="searchinput">
+            <img src="~/assets/font/fonts/search.svg" width="50" height="25" @click="searchinput">
             <!-- <img v-else src="../assets/img/svg/user-edit-solid.svg" alt=""> -->
             <client-only>
               <div class="userinfo">
                 <i v-if="usereditimg" class="user icon-user" @click="$router.push('/login')" />
                 <div v-else class="menuabsolute">
-                  <img src="../assets/img/SVG/user-edit-solid.svg" class="userlogin" alt="" @click.stop="$router.push('/checkout')">
+                  <img src="~/assets/img/SVG/user-edit-solid.svg" class="userlogin" alt="" @click.stop="$router.push('/checkout')">
                   <ul class="menu">
                     <li class="checkout" @click.stop="$router.push('/product/all')">
                       商品區
@@ -162,9 +162,9 @@
     >
       <div style="display:flex; justify-content:space-between; cursor:pointer; height:150px">
         <div @click.stop="isdisplay='none', $router.push('/')">
-          <img src="../assets/img/logo.png" alt style="height:100%;width:150px">
+          <img src="~/assets/img/logo.png" alt style="height:100%;width:150px">
         </div>
-        <img src="../assets/img/svg/cancel-circle.svg" alt @click="isdisplay='none'">
+        <img src="~/assets/img/svg/cancel-circle.svg" alt @click="isdisplay='none'">
       </div>
       <ul style="padding-top:20px;padding-left:15px">
         <li
