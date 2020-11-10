@@ -157,7 +157,9 @@
         }
     }
 }
-
+@include rwd(pad) {
+    
+}
 .cheapcode {
     width: 100%;
     height: 100%;

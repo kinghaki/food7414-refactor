@@ -4,7 +4,7 @@ const bodyparser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 app.use(cors({
-  origin: 'http://localhost:8888',
+  origin: 'http://localhost:8887',
   credentials: true
 }
 ))

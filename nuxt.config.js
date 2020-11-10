@@ -21,7 +21,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: 8888, // default: 3000
+    port: 8887, // default: 3000
     host: '0.0.0.0', // default: localhost,
     timing: false
   },

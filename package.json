@@ -21,7 +21,7 @@
     "googleapis": "^59.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.10.6",
+    "mongoose": "^5.10.13",
     "nuxt": "^2.14.0",
     "path": "^0.12.7",
     "randomstring": "^1.1.5",

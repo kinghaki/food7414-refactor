@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const JWT = require('../Token/JWT')
-const productall = require('../database/productall')
 const DBCart = require('../database/DBCart')
 router.post('/deleteCart', (req, res) => {
   const token = req.signedCookies.Token
@@ -87,8 +86,18 @@ router.post('/handInputCart', (req, res) => {
 router.get('/createCart', (req, res) => {
   const token = req.signedCookies.Token
   const { data } = JWT.checkToken(token)
-  DBCart.findOne({ token: data }).then((result) => {
-    res.json(result)
-  })
+  // JWT check完沒check到會返回error
+  if (data !== 'error') {
+    DBCart.findOne({ token: data }).then((result) => {
+      // 當資料庫還沒有資訊先創建一個初始的
+      if (result !== null) {
+        res.json(result)
+      } else {
+        DBCart.create({ token: data }).then((result2) => {
+          res.json(result2)
+        })
+      }
+    })
+  }
 })
 module.exports = router
