@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "nuxt build",
     "heroku-postbuild": "npm run build",
     "start": "node ~/server/app.js"
   },
