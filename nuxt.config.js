@@ -111,7 +111,34 @@ export default {
     //     })
     //   }
     // }
-
+    loaders: [
+      {
+        test: /\.(scss|sass)$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1000,
+          name: 'img/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1000,
+          name: 'fonts/[name].[hash:7].[ext]'
+        }
+      }
+    ],
     // vee-validate要加的
     transpile: [
       'vee-validate/dist/rules'
