@@ -112,16 +112,7 @@ export default {
     //   }
     // }
     loaders: [
-      {
-        test: /\.(scss|sass)$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
-      },
+
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         loader: 'url-loader',
