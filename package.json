@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "heroku-postbuild": "npm run build",
-    "start": "node ~/server/app.js"
+    "start": "node ~/server/app.js",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "12.16.0",
+    "npm": "6.13.4"
   },
   "dependencies": {
     "@neneos/nuxt-animate.css": "0.0.1",
