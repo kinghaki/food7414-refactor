@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "start": "node index.js"
   },
   "dependencies": {
     "@neneos/nuxt-animate.css": "0.0.1",
