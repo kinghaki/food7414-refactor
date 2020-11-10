@@ -111,18 +111,18 @@ export default {
     //     })
     //   }
     // }
-    loaders: [
+    // loaders: [
 
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 1000,
-          name: 'img/[name].[hash:7].[ext]'
-        }
-      }
+    //   {
+    //     test: /\.(png|jpe?g|gif|svg)$/,
+    //     loader: 'url-loader',
+    //     query: {
+    //       limit: 1000,
+    //       name: 'img/[name].[hash:7].[ext]'
+    //     }
+    //   }
 
-    ],
+    // ],
     // vee-validate要加的
     transpile: [
       'vee-validate/dist/rules'
