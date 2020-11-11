@@ -1,4 +1,5 @@
 
+require('dotenv').config()
 export default {
   /*
   ** Nuxt rendering mode
@@ -21,7 +22,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: process.env.port || 8887, // default: 3000
+    port: process.env.PORT || 8887, // default: 3000
     // host: '0.0.0.0', // default: localhost,
     timing: false
   },
@@ -92,7 +93,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.PORT || 'http://localhost:5001'
+    baseURL: process.env.base_URL || 'http://localhost:5001'
     // withCredentials: true
   },
   /*

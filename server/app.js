@@ -3,6 +3,7 @@ const app = express()
 const bodyparser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+require('dotenv').config()
 app.use(cors({
   origin: 'http://localhost:8887',
   credentials: true
@@ -98,5 +99,6 @@ app.use('/api/USER/clearJWT', clearJWT)
 // ecpay
 const ecpay = require('./route/getecpay')
 app.use('/api/USER/ecpay', ecpay)
+
 app.listen(process.env.PORT || 5001)
 console.log('成功' + process.env.PORT)
