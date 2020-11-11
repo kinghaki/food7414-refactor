@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev":"node ./server/app.js",
     "build": "nuxt build",
     "start": "nuxt start",
-    "heroku-postbuild": "npm run build && npm run dev"
+    "heroku-postbuild": "nuxt build && node ./server/app.js"
   },
   "engines": {
     "node": "12.16.0",
