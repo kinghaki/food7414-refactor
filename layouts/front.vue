@@ -276,12 +276,14 @@ export default {
     // window.addEventListener('resize', this.)
     window.addEventListener('scroll', this.headerfixed)
     window.addEventListener('scroll', this.bodyheight)
+    window.addEventListener('scroll', this.inputul)
     // window.addEventListener('scroll', this.smoothscroll)
   },
   destroyed () {
     window.clearInterval(this.header)
     window.removeEventListener('scroll', this.headerfixed)
     window.removeEventListener('scroll', this.bodyheight)
+    window.removeaddEventListener('scroll', this.inputul)
   },
   methods: {
     headerfixed () {
@@ -438,6 +440,10 @@ export default {
       await this.$router.push('/')
       window.localStorage.clear()
       location.reload()
+    },
+    // 當搜尋提示框出現時，滑鼠滾動讓提示框消失
+    inputul () {
+      this.$refs.inputul.style.display = 'none'
     }
 
     // 用來使滾輪滑動平順
