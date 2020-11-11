@@ -22,12 +22,9 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: 8887, // default: 3000
-    host: '0.0.0.0', // default: localhost,
+    port: process.env.PORT || 8887, // default: 3000
+    // host: '0.0.0.0', // default: localhost,
     timing: false
-  },
-  env: {
-    BASE_URL: process.env.base_URL
   },
   head: {
     title: process.env.npm_package_name || '',
@@ -96,7 +93,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.base_URL || 'http://localhost:5001'
+    baseURL: process.env.BASE_URL || 'http://localhost:5001'
     // withCredentials: true
   },
   /*
