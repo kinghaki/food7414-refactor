@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev":"node ./server/app.js",
-    "start": " nuxt start",
     "build": "nuxt build",
-    "heroku-postbuild": "npm run build && npm run dev"
+    "start": " nuxt start",
+    "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": "12.16.0",
