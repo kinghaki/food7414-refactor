@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "heroku-postbuild": "nuxt build && node ./server/app.js"
+    "start": "nuxt start && node ./server/app.js",
+    "heroku-postbuild": "nuxt build"
   },
   "engines": {
     "node": "12.16.0",
