@@ -11,7 +11,6 @@ const initParm = (cart, total) => {
     items.push(cart[i].name)
   }
   const itemname = items.join('#')
-  console.log()
   return {
     baseparam: {
       MerchantTradeNo: randomstring.generate({ length: 20, charset: 'alphanumeric' }), // 請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
@@ -26,20 +25,20 @@ const initParm = (cart, total) => {
       PaymentType: 'aio',
       TradeDesc: '交易描述會在哪',
       ItemName: itemname,
-      ReturnURL: 'https://localhost:8887/ecpay',
+      ReturnURL: 'https://food7414.herokuapp.com',
       // Remark: '交易備註',
       // CustomField1: '紅色*1',
       // 若使用Server端接收參數，付款完成、取號完成頁面上會出現
       // 「返回商店」按鈕 ，用來返回您的商店網站的。
-      ClientBackURL: 'http://localhost:8887/ecpay',
+      ClientBackURL: 'https://food7414.herokuapp.com',
 
       // 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
-      OrderResultURL: 'http://localhost:8887/test',
+      OrderResultURL: 'https://food7414.herokuapp.com',
 
       // 消費者使用非即時性付款(ATM、超商代碼、超商條碼)
       // 訂單建立完成後，綠界科技會以Client POST
       // 方式傳送付款相關資訊，並將使用者的畫面轉導到商家指定的頁面
-      ClientRedirectURL: 'http://localhost:8887/ecpay'
+      ClientRedirectURL: 'https://food7414.herokuapp.com'
 
       // 當消費使用 ATM/CVS/BARCODE 付款方式取號完成後，特店的server端接受綠界的取號結果訊息，並回應接
       // 收訊息
