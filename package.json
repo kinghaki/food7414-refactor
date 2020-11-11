@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "start": "nuxt start",
-    "heroku-postbuild": "nuxt build && node ./server/app.js"
+    "start": "cross-env NODE_ENV=production node ./server/app.js",
+    "heroku-postbuild": "nuxt build"
   },
   "engines": {
     "node": "12.16.0",
@@ -18,6 +18,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "ecpay_payment_nodejs_quick": "^1.0.1",
     "express": "^4.17.1",

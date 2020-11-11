@@ -1,6 +1,6 @@
 
 require('dotenv').config()
-export default {
+module.exports = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
