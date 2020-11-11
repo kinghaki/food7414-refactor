@@ -99,6 +99,6 @@ app.use('/api/USER/clearJWT', clearJWT)
 // ecpay
 const ecpay = require('./route/getecpay')
 app.use('/api/USER/ecpay', ecpay)
-
-app.listen(process.env.PORT || 5001)
-console.log('成功' + process.env.PORT)
+const port = process.env.PORT || 5001
+app.listen(port)
+console.log('成功' + port)

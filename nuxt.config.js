@@ -22,9 +22,12 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   server: {
-    port: process.env.PORT || 8887, // default: 3000
-    // host: '0.0.0.0', // default: localhost,
+    port: 8887, // default: 3000
+    host: '0.0.0.0', // default: localhost,
     timing: false
+  },
+  env: {
+    BASE_URL: process.env.base_URL
   },
   head: {
     title: process.env.npm_package_name || '',
