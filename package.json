@@ -6,7 +6,7 @@
     "dev":"node ./server/app.js",
     "start": " nuxt start",
     "build": "nuxt build",
-    "heroku-postbuild": "npm run start && npm run dev"
+    "heroku-postbuild": "npm run build && npm run dev"
   },
   "engines": {
     "node": "12.16.0",
