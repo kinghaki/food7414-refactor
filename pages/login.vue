@@ -153,7 +153,7 @@ export default {
       // 這邊是添加登入要使使用者確認的訊息
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
       // provider.addScope('profile')
-      provider.addScope('email')
+      // provider.addScope('email')
 
       firebase.auth().signInWithPopup(provider).then(async function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.

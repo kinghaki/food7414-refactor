@@ -161,7 +161,7 @@
       style="position:fixed;top:0;left:0;background-color:white; width:100%; height:100%;z-index:11;padding:10px"
     >
       <div style="display:flex; justify-content:space-between; cursor:pointer; height:150px">
-        <div @click.stop="isdisplay='none', $router.push('/')">
+        <div @click.stop="isdisplay='none'; $router.push('/')">
           <img src="~/assets/img/logo.png" style="height:100%;width:150px">
         </div>
         <img src="~/assets/img/svg/cancel-circle.svg" || '' @click="isdisplay='none'">
