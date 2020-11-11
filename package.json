@@ -5,7 +5,7 @@
   "scripts": {
     "dev":"node ./server/app.js",
     "build": "nuxt build",
-    "start": " nuxt start",
+    "start": "nuxt start",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
