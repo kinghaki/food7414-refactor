@@ -149,6 +149,9 @@ export default {
     googleapi () {
       const that = this
       const provider = new firebase.auth.GoogleAuthProvider()
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      })
       provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
       // 這邊是添加登入要使使用者確認的訊息
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
