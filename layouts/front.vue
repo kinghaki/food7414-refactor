@@ -194,7 +194,7 @@
 </template>
 
 <script>
-
+import { firebase } from '../plugins/firebase'
 export default {
 
   data () {
@@ -430,16 +430,22 @@ export default {
         this.productmainanddrink = ''
       }
     },
-    async logout () {
-      window.setTimeout(() => {
-        alert('登出成功')
-      }, 200)
-      // 把登入圖案改成登出圖案
-      await this.$store.commit('header/updatelogout')
-      await this.$axios.delete('/api/USER/clearJWT')
-      await this.$router.push('/')
-      window.localStorage.clear()
-      location.reload()
+    logout () {
+      firebase.auth().signOut().then(async function () {
+        // Sign-out successful.
+        window.setTimeout(() => {
+          alert('登出成功')
+        }, 200)
+        // 把登入圖案改成登出圖案
+        await this.$store.commit('header/updatelogout')
+        await this.$axios.delete('/api/USER/clearJWT')
+        await this.$router.push('/')
+        window.localStorage.clear()
+        location.reload()
+      }).catch((error) => {
+        // An error happened.
+        console.log(error)
+      })
     },
     // 當搜尋提示框出現時，滑鼠滾動讓提示框消失
     inputul () {
