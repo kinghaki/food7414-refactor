@@ -437,9 +437,9 @@ export default {
         window.setTimeout(() => {
           alert('登出成功')
         }, 200)
+        await that.$axios.delete('/api/USER/clearJWT')
         // 把登入圖案改成登出圖案
         await that.$store.commit('header/updatelogout')
-        await that.$axios.delete('/api/USER/clearJWT')
         await that.$router.push('/')
         window.localStorage.clear()
         location.reload()
