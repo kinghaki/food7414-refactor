@@ -431,15 +431,16 @@ export default {
       }
     },
     logout () {
-      firebase.auth().signOut().then(async function () {
+      const that = this
+      firebase.auth().signOut().then(async () => {
         // Sign-out successful.
         window.setTimeout(() => {
           alert('登出成功')
         }, 200)
         // 把登入圖案改成登出圖案
-        await this.$store.commit('header/updatelogout')
-        await this.$axios.delete('/api/USER/clearJWT')
-        await this.$router.push('/')
+        await that.$store.commit('header/updatelogout')
+        await that.$axios.delete('/api/USER/clearJWT')
+        await that.$router.push('/')
         window.localStorage.clear()
         location.reload()
       }).catch((error) => {
