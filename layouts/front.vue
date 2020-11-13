@@ -33,12 +33,12 @@
               </li>
               <li>
                 <nuxt-link to="/product/all" active-class="active" tag="button" style="outline:none" :class="productmainanddrink">
-                  product
+                  Product
                 </nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/about" tag="button" exact-active-class="active" style="outline:none">
-                  about
+                  About
                 </nuxt-link>
               </li>
             </ul>

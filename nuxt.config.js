@@ -36,12 +36,14 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: './favicon.ico' },
+      // googlefont只能從連結導入到這
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Acme|Nunito&display=swap' }
     ]
   },
   /*
   ** Global CSS
   */
+  //  最先導入的css
   css: [
     // { src: './assets/scss/common/reset.scss', lang: 'scss'},
     'vuetify/dist/vuetify.min.css',
