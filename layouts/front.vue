@@ -276,21 +276,15 @@ export default {
     // this.$refs.frontlayout.style.height = this.$refs.frontfixed.style.height
     // window.addEventListener('resize', this.)
 
-    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      window.addEventListener('scroll', this.headerfixed)
-      window.addEventListener('scroll', this.bodyheight)
-    }
-
+    window.addEventListener('scroll', this.headerfixed)
+    window.addEventListener('scroll', this.bodyheight)
     window.addEventListener('scroll', this.inputul)
     // window.addEventListener('scroll', this.smoothscroll)
   },
   destroyed () {
     window.clearInterval(this.header)
-    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      window.addEventListener('scroll', this.headerfixed)
-      window.addEventListener('scroll', this.bodyheight)
-    }
-
+    window.removeEventListener('scroll', this.headerfixed)
+    window.removeEventListener('scroll', this.bodyheight)
     window.removeaddEventListener('scroll', this.inputul)
   },
   methods: {
