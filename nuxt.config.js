@@ -56,7 +56,7 @@ module.exports = {
   */
   //  全局導入
   plugins: [
-    // 到時候axios做額外的配置用的
+
     '~plugins/vuetify.js',
     '~plugins/component.js',
     '~plugins/firebase.js',
