@@ -188,6 +188,8 @@ export default {
       refArray.forEach((v, i) => {
         const a = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         const b = document.documentElement.clientHeight || document.body.clientHeight
+        console.log(a)
+        console.log(b)
         if (
           a + b >=
           that.$refs[v.ref].offsetTop

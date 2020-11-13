@@ -136,8 +136,8 @@ export default {
   data () {
     return {
       value: {
-        acc: 'ian87030319@yahoo.com.tw',
-        pass: 'h94u454s06g4'
+        acc: '',
+        pass: ''
       },
       url: ''
     }
@@ -149,9 +149,13 @@ export default {
     googleapi () {
       const that = this
       const provider = new firebase.auth.GoogleAuthProvider()
+
+      // setCustomParameters 用來讓每次登出後在登入都有popup可以選
+      // 沒使用的話不能選帳號
       provider.setCustomParameters({
         prompt: 'select_account'
       })
+
       provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
       // 這邊是添加登入要使使用者確認的訊息
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');

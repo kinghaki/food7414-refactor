@@ -26,6 +26,7 @@
             <div class="img" @click="$router.push('/')" />
             <ul class="menulist">
               <li>
+                <!-- tag用button是代表一開始要讓一開始點進來的不會是初始顏色 -->
                 <nuxt-link to="/" exact-active-class="active" tag="button" style="outline:none">
                   Home
                 </nuxt-link>
