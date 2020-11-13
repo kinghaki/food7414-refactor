@@ -151,10 +151,7 @@ export default {
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
     // console.log(document.documentElement.clientHeight)
-    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      window.addEventListener('scroll', this.display)
-    }
-
+    window.addEventListener('scroll', this.display)
     // console.log(document.body.offsetHeight)
     // console.log(document.documentElement.offsetHeight)
     // console.log(document.body.clientHeight)
@@ -170,9 +167,7 @@ export default {
     // })
   },
   destroyed () {
-    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      window.removeEventListener('scroll', this.display)
-    }
+    window.removeEventListener('scroll', this.display)
   },
   methods: {
     display () {
