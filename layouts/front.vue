@@ -275,15 +275,22 @@ export default {
     // headermenu
     // this.$refs.frontlayout.style.height = this.$refs.frontfixed.style.height
     // window.addEventListener('resize', this.)
-    window.addEventListener('scroll', this.headerfixed)
-    window.addEventListener('scroll', this.bodyheight)
+
+    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      window.addEventListener('scroll', this.headerfixed)
+      window.addEventListener('scroll', this.bodyheight)
+    }
+
     window.addEventListener('scroll', this.inputul)
     // window.addEventListener('scroll', this.smoothscroll)
   },
   destroyed () {
     window.clearInterval(this.header)
-    window.removeEventListener('scroll', this.headerfixed)
-    window.removeEventListener('scroll', this.bodyheight)
+    if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      window.addEventListener('scroll', this.headerfixed)
+      window.addEventListener('scroll', this.bodyheight)
+    }
+
     window.removeaddEventListener('scroll', this.inputul)
   },
   methods: {
