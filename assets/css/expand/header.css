@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Acme|Nunito&display=swap");
 .header {
   font-family: "Acme", "Nunito", sans-serif;
+  font-weight: 700;
   font-size: 22px;
   display: -webkit-box;
   display: -ms-flexbox;
