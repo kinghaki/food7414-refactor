@@ -137,11 +137,18 @@ export default {
   },
   data () {
     return {
+      // 待解決:在手機端往下滑會產生彈跳現象
+      // productimg1: true,
+      // productimg2: false,
+      // productimg3: false,
+      // productimg4: false,
+      // productimg5: false
+
       productimg1: true,
-      productimg2: false,
-      productimg3: false,
-      productimg4: false,
-      productimg5: false
+      productimg2: true,
+      productimg3: true,
+      productimg4: true,
+      productimg5: true
     }
   },
   // 生命周期 - 創建完成（訪問當前this實例）
@@ -150,24 +157,13 @@ export default {
   },
   // 生命周期 - 掛載完成（訪問DOM元素）
   mounted () {
-    // console.log(document.documentElement.clientHeight)
-    window.addEventListener('scroll', this.display)
-    // console.log(document.body.offsetHeight)
-    // console.log(document.documentElement.offsetHeight)
-    // console.log(document.body.clientHeight)
-    // console.log(document.documentElement.clientHeight)
-    // console.log(document.documentElement.scrollHeight)
-    // console.log(document.body.scrollHeight)
-    // console.log(document.body.scrollTop)
-    // console.log(document.documentElement.scrollTop)
-    // this.$nextTick(() => {
-    //   that.$nuxt.$loading.start()
+    // 待解決:在手機端會產生往下滑彈跳現象
+    // window.addEventListener('scroll', this.display)
 
-    //   // setTimeout(() => that.$nuxt.$loading.finish(), 2000)
-    // })
   },
   destroyed () {
-    window.removeEventListener('scroll', this.display)
+    // 待解決:在手機端會產生往下滑彈跳現象
+    // window.removeEventListener('scroll', this.display)
   },
   methods: {
     display () {
@@ -188,8 +184,8 @@ export default {
       refArray.forEach((v, i) => {
         const a = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         const b = document.documentElement.clientHeight || document.body.clientHeight
-        console.log(a)
-        console.log(b)
+        // console.log(a)
+        // console.log(b)
         if (
           a + b >=
           that.$refs[v.ref].offsetTop
