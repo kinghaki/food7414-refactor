@@ -169,12 +169,13 @@ export default {
         // The signed-in user info.
         const user = result.user
         // await 兩次是因為第一次res.cookie不知道為甚麼沒有接收到
-        await that.$axios.post('/api/gettoken', {
+        const { data } = await that.$axios.post('/api/gettoken', {
           email: user.email
         })
         await that.$axios.post('/api/gettoken', {
           email: user.email
         })
+        console.log(data)
         that.$router.replace('/')
         // 將味登入圖案改成登入圖案
         that.$store.commit('header/updatelogin')

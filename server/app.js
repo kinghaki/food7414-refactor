@@ -1,10 +1,12 @@
+const path = require('path')
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+// 用來將nuxt的dev和build起來
 const { Nuxt, Builder } = require('nuxt')
-require('dotenv').config()
+require('dotenv').config({ path: path.join(__dirname, '../.env') })
 app.use(cors({
   origin: 'http://localhost:8887',
   credentials: true
@@ -46,7 +48,7 @@ app.post('/api/USER/checkLogin', (req, res) => {
 app.get('/api/cookie', (req, res) => {
   const DBCart = require('./database/DBCart')
   DBCart.findOne({ datassd: '123' }).then((result) => {
-    console.log(result)
+    // console.log(result)
     result.foreach()
     res.json(result)
   })
@@ -102,6 +104,7 @@ const ecpay = require('./route/getecpay')
 app.use('/api/USER/ecpay', ecpay)
 
 // Import and Set Nuxt.js options
+// eslint-disable-next-line import/order
 const config = require('../nuxt.config.js')
 
 config.dev = process.env.NODE_ENV !== 'production'
@@ -112,7 +115,7 @@ async function start () {
 
   const {
     host = process.env.HOST || 'localhost',
-    port = process.env.PORT || 5001
+    port = process.env.PORT || 8887
   } = nuxt.options.server
 
   // Build only in dev mode
@@ -120,6 +123,7 @@ async function start () {
     const builder = new Builder(nuxt)
     await builder.build()
     console.log(host, port)
+    console.log(process.env.apikey)
   } else {
     await nuxt.ready()
   }

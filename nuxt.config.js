@@ -1,5 +1,5 @@
-
 require('dotenv').config()
+// eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   /*
   ** Nuxt rendering mode
@@ -92,14 +92,31 @@ module.exports = {
   //   scss: './assets/scss/common/reset.scss'
   // },
 
+  // env配置
+  // env: {
+  //   apikey: process.env.apikey
+  // },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
+  //  dev的axios配置
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:5001'
+    baseURL: process.env.BASE_URL
     // withCredentials: true
   },
+  // build的axios配置
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     browserBaseURL: process.env.BROWSER_BASE_URL
+  //   }
+  // },
+  // build的axios配置
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.BASE_URL
+  //   }
+  // },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
