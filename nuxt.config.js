@@ -1,4 +1,5 @@
-require('dotenv').config()
+// 因為nuxt.config.js有env屬性了，所以不用載入dotenv了，創建env文件就好了
+// require('dotenv').config()
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   /*
@@ -93,9 +94,10 @@ module.exports = {
   // },
 
   // env配置
-  // env: {
-  //   apikey: process.env.apikey
-  // },
+  env: {
+    APIKEY: process.env.APIKEY,
+    DATABASE_KEY: process.env.DATABASE_KEY
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

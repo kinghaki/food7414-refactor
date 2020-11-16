@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBUGwmHgguZHCYWZW5zSbDEP7jCKbePUPo',
+  apiKey: process.env.APIKEY,
   authDomain: 'nuxtfoodproject.firebaseapp.com',
   databaseURL: 'https://nuxtfoodproject.firebaseio.com',
   projectId: 'nuxtfoodproject',

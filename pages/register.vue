@@ -28,12 +28,10 @@
               </div>
             </ValidationProvider>
             <!-- regex要擺在最前面 規則由前到後執行 -->
-            <!-- confirmed 要分別使用 rules -->
 
             <ValidationProvider
               v-slot="{ errors }"
-              :rules="{ regex:/(?:[0-9]+[a-zA-Z]|[a-zA-z]+[0-9])/,alpha_num2:true,min2:8,max2:12,required2:true, }"
-              rules="confirmeds:confirmation"
+              :rules="{ regex:/(?:[0-9]+[a-zA-Z]|[a-zA-z]+[0-9])/,alpha_num2:true,min2:8,max2:12,required2:true,confirmeds:'confirmation' }"
             >
               <!-- purple是背景色 -->
               <div class="justify-center mt-4">

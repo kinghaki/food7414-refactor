@@ -165,7 +165,7 @@
         <div @click.stop="isdisplay='none'; $router.push('/')">
           <img src="~/assets/img/logo.png" style="height:100%;width:150px">
         </div>
-        <img src="~/assets/img/svg/cancel-circle.svg" || '' @click="isdisplay='none'">
+        <img src="~/assets/img/svg/cancel-circle.svg" @click="isdisplay='none'">
       </div>
       <ul style="padding-top:20px;padding-left:15px">
         <li
