@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, '..', 'dist')))
 app.use(cors({
-  origin: process.env.Cors_Origin || 'http://localhost:8887',
+  origin: 'http://localhost:8887',
   credentials: true
 }
 ))
@@ -117,6 +117,8 @@ function start () {
   const port = process.env.PORT || 8887
 
   // Listen the server
-  app.listen(port, host)
+  app.listen(port, host, () => {
+    console.log('Listening on ', port, host)
+  })
 }
 start()
