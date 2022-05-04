@@ -9,7 +9,7 @@ const { Nuxt, Builder } = require('nuxt')
 // require('dotenv').config({ path: path.join(__dirname, '../.env') })
 app.use(express.static(path.join(__dirname, '..', 'dist')))
 app.use(cors({
-  origin: 'http://localhost:8887',
+  origin: process.env.Cors_Origin || 'http://localhost:8887',
   credentials: true
 }
 ))
