@@ -1,1 +1,1 @@
-web: npm run strat
+web: npm strat
