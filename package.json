@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./server/app.js",
     "start": "cross-env NODE_ENV=production node ./server/app.js",
-    "nuxt": "nuxt",
-    "generate": "nuxt generate",
-    "heroku-postbuild": "nuxt generate"
+    "nuxt": "nuxt"
   },
   "engines": {
     "node": "12.16.0",
