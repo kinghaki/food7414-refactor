@@ -6,6 +6,7 @@
     "dev": "cross-env NODE_ENV=development nodemon ./server/app.js",
     "start": "cross-env NODE_ENV=production node ./server/app.js",
     "nuxt": "nuxt",
+    "generate": "nuxt generate",
     "heroku-postbuild": "nuxt generate"
   },
   "engines": {
@@ -34,6 +35,7 @@
     "vee-validate": "^3.4.0",
     "vue": "^2.6.12",
     "vuetify": "^2.3.10",
+    "vuetify-loader": "^1.7.3",
     "vuex": "^3.5.1",
     "vuex-persist": "^3.1.3"
   },
