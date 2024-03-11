@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./server/app.js",
-    "start": "cross-env NODE_ENV=production node ./server/app.js",
+    "start": "cross-env NODE_ENV=development node ./server/app.js",
     "nuxt": "nuxt",
     "heroku-postbuild": "nuxt build"
   },
