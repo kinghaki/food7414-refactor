@@ -115,7 +115,6 @@
       allowfullscreen
     />
 
-    </transition>
     <div class="gotop" @click="scrollby">
       <div class="svg_box">
         <div class="tran" />
@@ -159,6 +158,7 @@ export default {
   mounted () {
     // 待解決:在手機端會產生往下滑彈跳現象
     // window.addEventListener('scroll', this.display)
+    console.log(this.$route.path)
 
   },
   destroyed () {
