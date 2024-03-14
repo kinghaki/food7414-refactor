@@ -110,10 +110,10 @@ app.use('/api/USER/ecpay', ecpay)
 // Import and Set Nuxt.js options
 // eslint-disable-next-line import/order
 
-const host = process.env.HOST || 'localhost'
+
 const port = process.env.PORT || 8887
 
 // Listen the server
-app.listen(port, host, () => {
-  console.log('Listening on ', port, host)
+app.listen(port, () => {
+  console.log('Listening on ', port)
 })
