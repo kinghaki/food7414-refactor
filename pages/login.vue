@@ -67,7 +67,8 @@
               </v-row> -->
               <div class="google">
                 <!-- 通過在click.prevent解決了googleapi跳出視窗是空白頁的問題 -->
-                <button class="googlelogin" @click.prevent="googleapi">
+                <!-- 下面google帳號先隱藏了 不知道為甚麼燈不進去 -->
+                <button class="googlelogin" @click.prevent="googleapi" style="display: none">
                   google帳號登入
                 </button>
               </div>
