@@ -218,7 +218,7 @@ export default {
         that.$store.commit('header/updatelogin')
         window.setTimeout(() => {
           alert('登入成功')
-          location.reload()
+          // location.reload() //2024/03/16 location.reload壞掉
         }, 200)
         // ...
       }).catch(() => {

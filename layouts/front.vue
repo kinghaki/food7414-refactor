@@ -444,7 +444,7 @@ export default {
         await that.$store.commit('header/updatelogout')
         await that.$router.push('/')
         window.localStorage.clear()
-        location.reload()
+        // location.reload()
       }).catch((error) => {
         // An error happened.
         console.log(error)
