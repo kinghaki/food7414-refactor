@@ -69,6 +69,9 @@ export default {
         window.setTimeout(() => {
           that.$router.replace('/login')
         }, 100)
+      }).catch(() => {
+        alert('此信箱尚未註冊')
+        that.$router.replace('/login')
       })
     }
   }

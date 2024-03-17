@@ -436,14 +436,18 @@ export default {
       const that = this
       firebase.auth().signOut().then(async () => {
         // Sign-out successful.
-        window.setTimeout(() => {
-          alert('登出成功')
-        }, 200)
-        await that.$axios.delete('/api/USER/clearJWT')
+        window.setTimeout(async () => {
+          await that.$axios.delete('/api/USER/clearJWT')
         // 把登入圖案改成登出圖案
         await that.$store.commit('header/updatelogout')
-        await that.$router.push('/')
+        // 把購物車物品清空
+        await that.$store.commit('cart/updateLogout')
         window.localStorage.clear()
+          alert('登出成功')
+        }, 200)
+       
+        // await that.$router.replace('/')
+        
         // location.reload()
       }).catch((error) => {
         // An error happened.

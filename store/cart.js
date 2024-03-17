@@ -83,6 +83,12 @@ export const mutations = {
     state.height = payload.height
     state.count = payload.count
     state.productcount = payload.productcount
+  },
+  updateLogout (state) {
+    state.cart = []
+    state.height = 500
+    state.count = 0
+    state.productcount = 0
   }
 }
 
