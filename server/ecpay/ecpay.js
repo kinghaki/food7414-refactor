@@ -30,7 +30,7 @@ const initParm = (cart, total) => {
       // CustomField1: '紅色*1',
       // 若使用Server端接收參數，付款完成、取號完成頁面上會出現
       // 「返回商店」按鈕 ，用來返回您的商店網站的。
-      ClientBackURL: 'https://food7414.onrender.com/login/',
+      ClientBackURL: 'https://food7414.onrender.com/',
 
       // 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
       // OrderResultURL: 'https://food7414.onrender.com/login/',
