@@ -17,6 +17,7 @@
                   label="信箱"
                   placeholder="請輸入信箱"
                   outline
+                  @keydown.enter="Login"
                 >
                   123
                 </v-text-field>
@@ -36,6 +37,7 @@
                   outline
                   class="indent "
                   style="padding:0 20px; margin-top:40px"
+                  @keydown.enter="Login"
                 >
                   123
                 </v-text-field>
@@ -68,7 +70,7 @@
               <div class="google">
                 <!-- 通過在click.prevent解決了googleapi跳出視窗是空白頁的問題 -->
                 <!-- 下面google帳號先隱藏了 不知道為甚麼燈不進去 -->
-                <button class="googlelogin" @click.prevent="googleapi" style="display: none">
+                <button class="googlelogin" @click.prevent="googleapi" v-if="false">
                   google帳號登入
                 </button>
               </div>
